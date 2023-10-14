@@ -1,1 +1,26 @@
+<header class="p-1 text-bg-dark fixed-top">
+  <div class="container">
+    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between">
+      <div class="col-md-3 mb-2 mb-md-0">
+        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+          <i class="bi me-2 bi-truck" role="img" aria-label="Bootstrap" style="font-size: 40px"></i>
+        </a>
+      </div>
+
+      <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+        <a routerLink="" class="nav-link px-2 text-white">Home</a>
+        <a href="#" class="nav-link px-4 text-white">Rastrea tu pedido</a>
+        <a href="#" class="nav-link px-2 text-white">Tarifas y precios</a>
+      </ul>
+
+      <div class="col-md-3 text-end">
+        <div class="text-end">
+          <button type="button" class="btn btn-outline-light me-2" (click)="showLogin()">Login</button>
+          <button type="button" class="btn btn-outline-warning">Sign-up</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+<div class="row" class="mt-5 p-2"></div>
 <router-outlet></router-outlet>

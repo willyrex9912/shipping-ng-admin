@@ -8,11 +8,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { TranslocoRootModule } from './transloco-root.module';
 import {AppCommonsModule} from "./app-commons/app-commons.module";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {LoginComponent} from "./views/login/login.component";
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    LoginComponent
   ],
   imports: [
     AppCommonsModule,
