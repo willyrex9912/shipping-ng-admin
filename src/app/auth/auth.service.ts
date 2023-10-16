@@ -1,7 +1,7 @@
 import {inject, Injectable} from '@angular/core';
 import {environment} from "../../environments/envoronment";
 import {HttpClient, HttpResponse} from "@angular/common/http";
-import {Credentials} from "../models/credentials";
+import {Credentials} from "./models/credentials";
 import {map} from "rxjs";
 
 @Injectable({
@@ -17,7 +17,8 @@ export class AuthService {
     }
 
     getToken() {
-        return localStorage.getItem('token');
+        let token = localStorage.getItem('token');
+        return token ? `Bearer ${token}` : null;
     }
 
     login(credentials: Credentials) {
