@@ -1,6 +1,7 @@
 import {Component, inject} from '@angular/core';
 import {NgForm} from "@angular/forms";
 import {Credentials} from "../../models/credentials";
+import {AuthService} from "../../auth.service";
 
 @Component({
   selector: 'app-login',
@@ -8,6 +9,8 @@ import {Credentials} from "../../models/credentials";
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
+
+  private authService: AuthService = inject(AuthService);
 
   credentials: Credentials;
 
@@ -17,6 +20,12 @@ export class LoginComponent {
 
   onSummit(form: NgForm) {
     console.log(form.value);
+    this.credentials = form.value;
+
+    this.authService.login(this.credentials)
+      .subscribe(response => {
+        localStorage.setItem('token', response.value);
+    });
   }
 
 }
