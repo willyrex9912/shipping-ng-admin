@@ -6,6 +6,7 @@ import {NotFoundComponent} from "./app-commons/components/not-found/not-found.co
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
+  { path:'administration', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)},
   { path: '**', component: NotFoundComponent}
 ];
 
