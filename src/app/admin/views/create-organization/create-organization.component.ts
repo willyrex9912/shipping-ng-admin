@@ -3,6 +3,7 @@ import {AdmOrganization} from "../../../data/models/admin";
 import {AdmOrganizationService} from "../../../services/adm/AdmOrganization.service";
 import {ToasterService} from "../../../services/oth/toaster.service";
 import {ToasterEnum} from "../../../global/toaster-enum";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-create-organization',
@@ -15,6 +16,7 @@ export class CreateOrganizationComponent {
   constructor(
     private organizationService:AdmOrganizationService,
     private toasterService:ToasterService,
+    private router:Router,
   ) {
     this.organization = new AdmOrganization();
   }
@@ -23,7 +25,12 @@ export class CreateOrganizationComponent {
     this.checkAllIsValid().then(allisValid => {
       if(allisValid){
         this.organizationService.save(this.organization).subscribe({
-
+          next: () => {
+            this.showSuccessMessage('txt_entity_saved');
+            this.router.navigate(['../administration/organizations']);
+          }, error: _ => {
+            this.showErrorMessage('txt_server_error');
+          }
         });
       }
     });

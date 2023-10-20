@@ -1,10 +1,10 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
-import {environment} from "../../environments/environment";
 import {AdmOrganization} from "../../data/models/admin";
 import {Observable} from "rxjs";
+import {environment} from "../../../environments/envoronment";
 
-const baseUrl = environment.adminUrl + '/organizations'
+const baseUrl = environment.baseUrl + '/organizations'
 
 @Injectable({
   providedIn: 'root'

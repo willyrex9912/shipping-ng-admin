@@ -10,5 +10,8 @@
   "txt_complete_all_fields": "Complete todos los campos obligatorios",
   "txt_error": "Error",
   "txt_success": "Éxito",
-  "txt_seconds_ago": "Segundos atrás"
+  "txt_seconds_ago": "Segundos atrás",
+  "txt_server_error": "Error en el servidor, intente más tarde.",
+  "txt_entity_saved": "Entidad guardada.",
+  "txt_organizations": "Organizaciones"
 }
