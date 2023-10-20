@@ -11,6 +11,9 @@
     <div class=" me-auto toast-header-style" *transloco="let t; read: toast.options.translationContext">
       <strong class="mx-1" [className]="toast.styles.textClass">{{ t(toast.options.header || toast.styles.header) }}</strong>
     </div>
+    <div class="d-flex flex-column justify-content-end" *transloco="let t; read: toast.options.translationContext">
+      <small class="text-body-secondary">{{t('txt_seconds_ago')}}</small>
+    </div>
   </ng-template>
   <div *transloco="let t; read: toast.options.translationContext">
     {{t(toast.options.message, toast.options.params ?? {}) }}

@@ -9,5 +9,6 @@
   "txt_create": "Crear",
   "txt_complete_all_fields": "Complete todos los campos obligatorios",
   "txt_error": "Error",
-  "txt_success": "Éxito"
+  "txt_success": "Éxito",
+  "txt_seconds_ago": "Segundos atrás"
 }
