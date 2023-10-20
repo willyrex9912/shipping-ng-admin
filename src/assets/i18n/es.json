@@ -1,4 +1,13 @@
 {
   "txt_not_found_message": "La página que estás buscando no existe.",
-  "txt_back_home": "Regresar al inicio"
+  "txt_back_home": "Regresar al inicio",
+  "txt_create_organization": "Crear organización",
+  "txt_name": "Nombre",
+  "txt_name_placeholder": "Ingresa el nombre",
+  "txt_description": "Descripción",
+  "txt_description_placeholder": "Ingresa una descripción",
+  "txt_create": "Crear",
+  "txt_complete_all_fields": "Complete todos los campos obligatorios",
+  "txt_error": "Error",
+  "txt_success": "Éxito"
 }
