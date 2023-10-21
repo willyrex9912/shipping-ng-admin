@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AdmPermission, AdmPermissionDto, AdmRole, AdmRolePermission } from 'src/app/data/models/admin';
 import { ToasterEnum } from 'src/app/global/toaster-enum';
 import { AdmPermissionService } from 'src/app/services/adm/adm-permission.service';
@@ -33,7 +34,8 @@ export class CreateRolesComponent implements OnInit {
   constructor(
     private permissionService: AdmPermissionService,
     private roleService: AdmRoleService,
-    private toastService: ToasterService
+    private toastService: ToasterService,
+    private router: Router
   ) {
     this.role = new AdmRole();
   }
@@ -65,7 +67,7 @@ export class CreateRolesComponent implements OnInit {
       }
       return tree;
     }, [])
-      .sort((a, b) => a.permission.admPermission.priority - b.permission.admPermission.priority);
+      .sort((a, b) => a.permission.permission.priority - b.permission.permission.priority);
 
     result.forEach(treeNode => {
       this.toTreeNodeAux(treeNode, tmp, 1);
@@ -79,7 +81,7 @@ export class CreateRolesComponent implements OnInit {
     const tmp: AdmPermissionDto[] = [];
 
     parent.children = permissions.reduce((tree: TreeNode[], curPermission: AdmPermissionDto) => {
-      if (parent.permission.admPermission.permissionId === curPermission.parentPermissionId) {
+      if (parent.permission.permission.permissionId === curPermission.parentPermissionId) {
         curPermission.level = level;
         tree.push({ parent: parent, permission: this.toRolePermission(curPermission), children: [] });
       } else {
@@ -87,7 +89,7 @@ export class CreateRolesComponent implements OnInit {
       }
       return tree;
     }, [])
-      .sort((a, b) => a.permission.admPermission.priority - b.permission.admPermission.priority);
+      .sort((a, b) => a.permission.permission.priority - b.permission.permission.priority);
 
     parent.children.forEach(treeNode => {
       this.toTreeNodeAux(treeNode, tmp, level + 1);
@@ -96,8 +98,8 @@ export class CreateRolesComponent implements OnInit {
 
   private toRolePermission(permission: AdmPermissionDto) {
     const rolePermission = new AdmRolePermission();
-    rolePermission.admPermission = new AdmPermission();
-    rolePermission.admPermission = Object.assign(rolePermission.admPermission, permission);
+    rolePermission.permission = new AdmPermission();
+    rolePermission.permission = Object.assign(rolePermission.permission, permission);
     rolePermission.parentPermissionId = permission.parentPermissionId;
 
     rolePermission.readPermission = false;
@@ -188,11 +190,15 @@ export class CreateRolesComponent implements OnInit {
   }
 
   onSubmit() {
+    if (!this.role.rolePermissions || !this.role.description || !this.role.hourlyFee) {
+      return this.toastService.show({ type: ToasterEnum.ERROR, message: 'txt_complete_all_fields' });
+    }
+
     this.role.rolePermissions = this.toRolePermissions(this.nodes);
     this.roleService.save(this.role).subscribe({
       next: _ => {
         this.toastService.show({ type: ToasterEnum.SUCCESS, message: 'txt_changes_save_successfully' });
-        // TODO: navigate to role list
+        void this.router.navigate(['/administration/roles']);
       },
       error: _ => this.toastService.show({ type: ToasterEnum.ERROR, message: 'txt_server_error' })
     })

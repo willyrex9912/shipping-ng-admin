@@ -25,5 +25,6 @@
   "users": "Usuarios",
   "txt_hourly_fee": "Tarifa por hora",
   "txt_hourly_fee_placeholder": "Ingresa una tarifa por hora para el rol",
-  "txt_changes_save_successfully": "Cambios guardados con éxito"
+  "txt_changes_save_successfully": "Cambios guardados con éxito",
+  "error": "Error"
 }

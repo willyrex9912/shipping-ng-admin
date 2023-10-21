@@ -39,7 +39,7 @@ export class AdmRole {
 
 export class AdmRolePermission {
   public rolePermissionId!: number;
-  public admPermission!: AdmPermission;
+  public permission!: AdmPermission;
   public readPermission!: boolean;
   public createPermission!: boolean;
   public updatePermission!: boolean;

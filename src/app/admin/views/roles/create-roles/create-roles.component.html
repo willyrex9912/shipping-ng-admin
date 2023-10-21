@@ -50,9 +50,9 @@
   </div>
 
   <ng-template #nodePermission let-node='node'>
-    <tr *ngIf="node" [ngClass]="{ 'main-color': node.permission.admPermission.level === 0, 'second-color': node.permission.admPermission.level === 1 }">
+    <tr *ngIf="node" [ngClass]="{ 'main-color': node.permission.permission.level === 0, 'second-color': node.permission.permission.level === 1 }">
       <td>
-        <b *ngFor="let blank of getBlank(node.permission.admPermission.level)">&nbsp;&nbsp;&nbsp;&nbsp;</b><label>{{ t(node.permission.admPermission.name) }}</label>
+        <b *ngFor="let blank of getBlank(node.permission.permission.level)">&nbsp;&nbsp;&nbsp;&nbsp;</b><label>{{ t(node.permission.permission.name) }}</label>
       </td>
       <td class="text-center td-width"><input type="checkbox" class="form-check-input" (change)="onPermissionChange($event, permissionType.ALL, node)" [checked]="getAllChecked(node)"></td>
       <td class="text-center td-width"><input type="checkbox" class="form-check-input" [(ngModel)]="node.permission.readPermission" (ngModelChange)="onPermissionChange($event, permissionType.READ, node)"></td>
