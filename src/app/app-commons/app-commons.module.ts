@@ -6,12 +6,14 @@ import {ToasterComponent} from "./components/toaster/toaster.component";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {FormsModule} from "@angular/forms";
 import {CommonModule} from "@angular/common";
+import { RequiredFieldComponent } from './components/required-field/required-field.component';
 
 @NgModule({
   declarations: [
     NotFoundComponent,
     NoWitheSpaceDirective,
-    ToasterComponent
+    ToasterComponent,
+    RequiredFieldComponent
   ],
   imports: [
     TranslocoModule,
@@ -22,7 +24,8 @@ import {CommonModule} from "@angular/common";
   exports: [
     NotFoundComponent,
     NoWitheSpaceDirective,
-    ToasterComponent
+    ToasterComponent,
+    RequiredFieldComponent
   ]
 })
 export class AppCommonsModule {

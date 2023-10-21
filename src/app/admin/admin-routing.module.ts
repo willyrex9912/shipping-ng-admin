@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CreateRolesComponent } from 'src/app/admin/views/roles/create-roles/create-roles.component';
+import { RolesListComponent } from 'src/app/admin/views/roles/roles-list/roles-list.component';
 import {OrganizationListComponent} from "./views/organization-list/organization-list.component";
 import {CreateOrganizationComponent} from "./views/create-organization/create-organization.component";
 
@@ -13,6 +15,13 @@ const routes: Routes = [
       {
         path: 'create', component: CreateOrganizationComponent
       }
+    ],
+  },
+  {
+    path: 'roles',
+    children: [
+      { path: '', component: RolesListComponent },
+      { path: 'create', component: CreateRolesComponent }
     ]
   }
 ];

@@ -13,5 +13,14 @@
   "txt_seconds_ago": "Segundos atrás",
   "txt_server_error": "Error en el servidor, intente más tarde.",
   "txt_entity_saved": "Entidad guardada.",
-  "txt_organizations": "Organizaciones"
+  "txt_organizations": "Organizaciones",
+  "txt_permission": "Permiso",
+  "txt_create_role": "Crear rol",
+  "txt_all": "Todos",
+  "txt_read": "Leer",
+  "txt_update": "Actualizar",
+  "txt_delete": "Eliminar",
+  "administration": "Administración",
+  "roles": "Roles",
+  "users": "Usuarios"
 }

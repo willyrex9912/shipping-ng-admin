@@ -1,0 +1,59 @@
+<ng-container *transloco="let t">
+  <div class="row m-5">
+    <h1 class="h3 mb-5">{{ t('txt_create_role') }}</h1>
+    <form>
+      <div class="row">
+        <div class="mb-3 col-lg-6 col-12">
+          <app-required-field />
+          <label for="name" class="form-label">{{t('txt_name')}}</label>
+          <input type="text" class="form-control" id="name" name="name" placeholder="{{t('txt_name_placeholder')}}">
+        </div>
+        <div class="mb-3 col-lg-6 col-12">
+          <app-required-field />
+          <label for="description" class="form-label">{{t('txt_description')}}</label>
+          <input type="text" class="form-control" id="description" name="description" placeholder="{{t('txt_description_placeholder')}}">
+        </div>
+      </div>
+      <div class="row">
+        <div>
+          <table class="table m-0 sticky-header table table-borderless">
+            <thead>
+              <tr>
+                <th scope="col">{{ t('txt_permission') }}</th>
+                <th class="text-center" scope="col">{{ t('txt_all') }}</th>
+                <th class="text-center" scope="col">{{ t('txt_read') }}</th>
+                <th class="text-center" scope="col">{{ t('txt_create') }}</th>
+                <th class="text-center" scope="col">{{ t('txt_update') }}</th>
+                <th class="text-center" scope="col">{{ t('txt_delete') }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <ng-template
+                *ngFor="let rolePermission of rolePermissions"
+                [ngTemplateOutlet]="nodePermission"
+                [ngTemplateOutletContext]="{ node: rolePermission }"
+              ></ng-template>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+      <div class="d-flex flex-column align-items-end my-4">
+        <button type="button" class="btn btn-warning btn-wide">{{ t('txt_create') }}</button>
+      </div>
+    </form>
+  </div>
+
+  <ng-template #nodePermission let-node='node'>
+    <tr *ngIf="node" [ngClass]="{ 'main-color': node.admPermission.level === 0, 'second-color': node.admPermission.level === 1 }">
+      <td>
+        <b *ngFor="let blank of getBlank(node.admPermission.level)">&nbsp;&nbsp;&nbsp;&nbsp;</b><label>{{ t(node.admPermission.name) }}</label>
+      </td>
+      <td class="text-center td-width"><input type="checkbox" class="form-check-input"></td>
+      <td class="text-center td-width"><input type="checkbox" class="form-check-input"></td>
+      <td class="text-center td-width"><input type="checkbox" class="form-check-input"></td>
+      <td class="text-center td-width"><input type="checkbox" class="form-check-input"></td>
+      <td class="text-center td-width"><input type="checkbox" class="form-check-input"></td>
+    </tr>
+  </ng-template>
+</ng-container>

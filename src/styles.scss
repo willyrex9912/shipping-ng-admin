@@ -27,3 +27,32 @@
   justify-content: center;
   align-items: center;
 }
+
+.sticky-header {
+  th {
+    position: sticky;
+    left: 0;
+    top: 0;
+    z-index: 100;
+
+    div {
+      padding: 0;
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+
+      div {
+        cursor: pointer;
+      }
+    }
+
+    div.byOrder {
+      font-weight: bolder;
+    }
+
+    &:last-of-type {
+      right: 0;
+      top: 0;
+    }
+  }
+}
