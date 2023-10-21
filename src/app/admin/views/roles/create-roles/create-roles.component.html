@@ -29,9 +29,9 @@
             </thead>
             <tbody>
               <ng-template
-                *ngFor="let rolePermission of rolePermissions; let i = index;"
+                *ngFor="let treeNode of nodes"
                 [ngTemplateOutlet]="nodePermission"
-                [ngTemplateOutletContext]="{ node: rolePermission, index: i }"
+                [ngTemplateOutletContext]="{ node: treeNode }"
               ></ng-template>
             </tbody>
           </table>
@@ -44,16 +44,25 @@
     </form>
   </div>
 
-  <ng-template #nodePermission let-node='node' let-index='index'>
-    <tr *ngIf="node" [ngClass]="{ 'main-color': node.admPermission.level === 0, 'second-color': node.admPermission.level === 1 }">
+  <ng-template #nodePermission let-node='node'>
+    <tr *ngIf="node" [ngClass]="{ 'main-color': node.permission.admPermission.level === 0, 'second-color': node.permission.admPermission.level === 1 }">
       <td>
-        <b *ngFor="let blank of getBlank(node.admPermission.level)">&nbsp;&nbsp;&nbsp;&nbsp;</b><label>{{ t(node.admPermission.name) }}</label>
+        <b *ngFor="let blank of getBlank(node.permission.admPermission.level)">&nbsp;&nbsp;&nbsp;&nbsp;</b><label>{{ t(node.permission.admPermission.name) }}</label>
       </td>
-      <td class="text-center td-width"><input type="checkbox" class="form-check-input" (change)="onPermissionChange($event, permissionType.ALL, index)" [checked]="getAllChecked(index)"></td>
-      <td class="text-center td-width"><input type="checkbox" class="form-check-input" [(ngModel)]="node.readPermission" (ngModelChange)="onPermissionChange($event, permissionType.READ, index)"></td>
-      <td class="text-center td-width"><input type="checkbox" class="form-check-input" [(ngModel)]="node.createPermission" (ngModelChange)="onPermissionChange($event, permissionType.CREATE, index)"></td>
-      <td class="text-center td-width"><input type="checkbox" class="form-check-input" [(ngModel)]="node.updatePermission" (ngModelChange)="onPermissionChange($event, permissionType.UPDATE, index)"></td>
-      <td class="text-center td-width"><input type="checkbox" class="form-check-input" [(ngModel)]="node.deletePermission" (ngModelChange)="onPermissionChange($event, permissionType.DELETE, index)"></td>
+      <td class="text-center td-width"><input type="checkbox" class="form-check-input" (change)="onPermissionChange($event, permissionType.ALL, node)" [checked]="getAllChecked(node)"></td>
+      <td class="text-center td-width"><input type="checkbox" class="form-check-input" [(ngModel)]="node.permission.readPermission" (ngModelChange)="onPermissionChange($event, permissionType.READ, node)"></td>
+      <td class="text-center td-width"><input type="checkbox" class="form-check-input" [(ngModel)]="node.permission.createPermission" (ngModelChange)="onPermissionChange($event, permissionType.CREATE, node)"></td>
+      <td class="text-center td-width"><input type="checkbox" class="form-check-input" [(ngModel)]="node.permission.updatePermission" (ngModelChange)="onPermissionChange($event, permissionType.UPDATE, node)"></td>
+      <td class="text-center td-width"><input type="checkbox" class="form-check-input" [(ngModel)]="node.permission.deletePermission" (ngModelChange)="onPermissionChange($event, permissionType.DELETE, node)"></td>
     </tr>
+    <!-- children here -->
+    <ng-container *ngIf="node.children.length">
+      <ng-template
+         *ngFor="let treeNode of node.children"
+         [ngTemplateOutlet]="nodePermission"
+         [ngTemplateOutletContext]="{ node: treeNode }"
+      >
+      </ng-template>
+    </ng-container>
   </ng-template>
 </ng-container>

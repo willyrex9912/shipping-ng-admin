@@ -12,6 +12,12 @@ enum PermissionType {
   DELETE
 }
 
+type TreeNode = {
+  parent?: TreeNode,
+  permission: AdmRolePermission,
+  children: TreeNode[]
+};
+
 @Component({
   selector: 'app-create-roles',
   templateUrl: './create-roles.component.html',
@@ -21,7 +27,7 @@ export class CreateRolesComponent implements OnInit {
   permissionType = PermissionType;
 
   private MAIN_PARENT_PERMISSION = 5100;
-  rolePermissions: AdmRolePermission[] = [];
+  nodes: TreeNode[] = [];
 
   constructor(
     private permissionService: AdmPermissionService,
@@ -37,122 +43,92 @@ export class CreateRolesComponent implements OnInit {
     ).subscribe({
       next: (response) => {
         const permissions = response.body ?? [];
-        this.rolePermissions = this.toRolePermissions(permissions);
+        this.nodes = this.toTreeNode(permissions);
+
         const total = Number(response.headers.get('X-Total-Count') ?? 0);
       },
       error: _ => this.toastService.show({ type: ToasterEnum.ERROR, message: 'txt_server_error' })
     });
   }
 
-  private toRolePermissions(permissions: AdmPermissionDto[]) {
-    const result: AdmPermissionDto[] = [];
-
+  private toTreeNode(permissions: AdmPermissionDto[]): TreeNode[] {
     const tmp: AdmPermissionDto[] = [];
-    const parents = permissions.reduce((fathers: AdmPermissionDto[], curPermission: AdmPermissionDto) => {
+    const result: TreeNode[] = permissions.reduce((tree: TreeNode[], curPermission: AdmPermissionDto) => {
       if (curPermission.parentPermissionId == this.MAIN_PARENT_PERMISSION) {
         curPermission.level = 0;
-        fathers.push(curPermission);
+        tree.push({ permission: this.toRolePermission(curPermission), children: [] });
       } else {
         tmp.push(curPermission);
       }
-      return fathers;
+      return tree;
     }, [])
-      .sort((a, b) => a.priority - b.priority);
+      .sort((a, b) => a.permission.admPermission.priority - b.permission.admPermission.priority);
 
-    parents.forEach(parent => {
-      result.push(parent);
-      result.push(...this.processPermissionAux(parent, tmp, 1));
+    result.forEach(treeNode => {
+      this.toTreeNodeAux(treeNode, tmp, 1);
     });
 
-    return result.map(permission => {
-      const rolePermission = new AdmRolePermission();
-      rolePermission.admPermission = new AdmPermission();
-      rolePermission.admPermission = Object.assign(rolePermission.admPermission, permission);
-      rolePermission.parentPermissionId = permission.parentPermissionId;
-
-      rolePermission.readPermission = false;
-      rolePermission.createPermission = false;
-      rolePermission.updatePermission = false;
-      rolePermission.deletePermission = false;
-      return rolePermission;
-    });
+    console.log(result);
+    return result;
   }
 
-  private processPermissionAux(parent: AdmPermissionDto, permissions: AdmPermissionDto[], level: number): AdmPermissionDto[] {
-    const result: AdmPermissionDto[] = [];
+  private toTreeNodeAux(parent: TreeNode, permissions: AdmPermissionDto[], level: number) {
     const tmp: AdmPermissionDto[] = [];
 
-    const children = permissions.reduce((child: AdmPermissionDto[], curPermission: AdmPermissionDto) => {
-      if (curPermission.parentPermissionId === parent.permissionId) {
+    parent.children = permissions.reduce((tree: TreeNode[], curPermission: AdmPermissionDto) => {
+      if (parent.permission.admPermission.permissionId === curPermission.parentPermissionId) {
         curPermission.level = level;
-        child.push(curPermission);
+        tree.push({ parent: parent, permission: this.toRolePermission(curPermission), children: [] });
       } else {
         tmp.push(curPermission);
       }
-      return child;
+      return tree;
     }, [])
-      .sort((a, b) => a.priority - b.priority);
+      .sort((a, b) => a.permission.admPermission.priority - b.permission.admPermission.priority);
 
-    children.forEach(permission => {
-      result.push(permission);
-      result.push(...this.processPermissionAux(permission, tmp, level + 1));
-    });
+    parent.children.forEach(treeNode => {
+      this.toTreeNodeAux(treeNode, tmp, level + 1);
+    })
+  }
 
-    return result;
+  private toRolePermission(permission: AdmPermissionDto) {
+    const rolePermission = new AdmRolePermission();
+    rolePermission.admPermission = new AdmPermission();
+    rolePermission.admPermission = Object.assign(rolePermission.admPermission, permission);
+    rolePermission.parentPermissionId = permission.parentPermissionId;
+
+    rolePermission.readPermission = false;
+    rolePermission.createPermission = false;
+    rolePermission.updatePermission = false;
+    rolePermission.deletePermission = false;
+    return rolePermission;
   }
 
   getBlank(level: number) {
     return Array(level).fill(4);
   }
 
-  onPermissionChange(event: Event | boolean, type: PermissionType, index: number) {
+  onPermissionChange(event: Event | boolean, type: PermissionType, node: TreeNode) {
     let checked = event instanceof Event ? (event.target as HTMLInputElement).checked : event;
-    const permission = this.rolePermissions[index];
-    if (!permission) return;
+    if (!node || !node.permission) return;
 
-    if (type == PermissionType.ALL) {
-      this.setCheck(checked, type, permission);
-    }
+    // TODO: check children
+    this.checkChildren(checked, type, node);
+    this.checkParent(checked, type, node);
+  }
 
-    const brothersChecked = this.rolePermissions
-      .filter(per => per.parentPermissionId == permission.parentPermissionId)
-      .some(per => this.getCheckedValue(type, per));
+  private checkChildren(checked: boolean, permissionType: PermissionType, node: TreeNode) {
+    this.setCheck(checked, permissionType, node.permission);
+    node.children.forEach(child => this.checkChildren(checked, permissionType, child));
+  }
 
-    checked ||= brothersChecked;
+  private checkParent(checked: boolean, permissionType: PermissionType, node: TreeNode | undefined) {
+    if (!node || !node.parent) return;
+    const parent = node.parent;
+    const anyChecked = parent.children.some(treeNode => this.getCheckedValue(permissionType, treeNode.permission));
 
-    let currentParent = permission.parentPermissionId;
-
-    // TODO: go backwards
-    for (let i = index - 1; i >= 0; i--) {
-      // brothers
-      if (this.rolePermissions[i].parentPermissionId == currentParent) {
-        // TODO: get value of checked here
-        this.getCheckedValue(type, this.rolePermissions[i]);
-        continue;
-      }
-
-      // parent
-      if (this.rolePermissions[i].admPermission.permissionId == currentParent) {
-        // set checked here
-        currentParent = this.rolePermissions[i].parentPermissionId;
-        // currentPermission = this.rolePermissions[i].admPermission.permissionId;
-        this.setCheck(checked, type, this.rolePermissions[i]);
-      }
-    }
-
-    // TODO: go forward
-    let currentPermission = permission.admPermission.permissionId;
-    const parents = new Set<number>()
-      .add(currentPermission);
-
-    for (let i = 0; i < this.rolePermissions.length; i++) {
-      // check for children
-      if (parents.has(this.rolePermissions[i].parentPermissionId)) {
-        this.setCheck(checked, type, this.rolePermissions[i]);
-        // children of this.rolePermissions[i] here
-        parents.add(this.rolePermissions[i].admPermission.permissionId);
-      }
-    }
+    this.setCheck(anyChecked, permissionType, parent.permission);
+    this.checkParent(anyChecked, permissionType, parent);
   }
 
   private setCheck(checked: boolean, permissionType: PermissionType, permission: AdmRolePermission) {
@@ -191,17 +167,16 @@ export class CreateRolesComponent implements OnInit {
           && this.getCheckedValue(PermissionType.DELETE, permission);
     }
 
-    return true;
+    return false;
   }
 
-  getAllChecked(index: number) {
-    const permission = this.rolePermissions[index];
-    if (!permission) return false;
-
+  getAllChecked(node: TreeNode) {
+    if (!node || !node.permission) return false;
+    const permission = node.permission;
     return permission.readPermission && permission.createPermission && permission.updatePermission && permission.deletePermission;
   }
 
   onSubmit() {
-    console.log(this.rolePermissions);
+    console.log(this.nodes);
   }
 }
