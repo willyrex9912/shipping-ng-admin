@@ -2,6 +2,7 @@ import {Component, inject} from '@angular/core';
 import {NgForm} from "@angular/forms";
 import {Credentials} from "../../models/credentials";
 import {AuthService} from "../../auth.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -11,6 +12,7 @@ import {AuthService} from "../../auth.service";
 export class LoginComponent {
 
   private authService: AuthService = inject(AuthService);
+  private router: Router = inject(Router);
 
   credentials: Credentials;
 
@@ -23,9 +25,13 @@ export class LoginComponent {
     this.credentials = form.value;
 
     this.authService.login(this.credentials)
-      .subscribe(response => {
-        localStorage.setItem('token', response.value);
-    });
+      .subscribe({
+        next: response => {
+          console.log("Response", response);
+          localStorage.setItem('token', response.value);
+          this.router.navigate(['/']);
+        },
+        error: error => console.log("Error", error.error)
+      });
   }
-
 }
