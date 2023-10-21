@@ -43,4 +43,5 @@ export class AdmRolePermission {
 
   // just for frontend
   public level!: number;
+  public parentPermissionId!: number;
 }
