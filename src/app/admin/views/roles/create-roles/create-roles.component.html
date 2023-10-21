@@ -6,12 +6,17 @@
         <div class="mb-3 col-lg-6 col-12">
           <app-required-field />
           <label for="name" class="form-label">{{t('txt_name')}}</label>
-          <input type="text" class="form-control" id="name" name="name" placeholder="{{t('txt_name_placeholder')}}">
+          <input type="text" class="form-control" id="name" name="name" placeholder="{{t('txt_name_placeholder')}}" noWhitespace [(ngModel)]="role.name">
         </div>
         <div class="mb-3 col-lg-6 col-12">
           <app-required-field />
           <label for="description" class="form-label">{{t('txt_description')}}</label>
-          <input type="text" class="form-control" id="description" name="description" placeholder="{{t('txt_description_placeholder')}}">
+          <input type="text" class="form-control" id="description" name="description" placeholder="{{t('txt_description_placeholder')}}" noWhitespace [(ngModel)]="role.description">
+        </div>
+        <div class="mb-3 col-lg-6 col-12">
+          <app-required-field />
+          <label for="fee" class="form-label">{{t('txt_hourly_fee')}}</label>
+          <input type="text" class="form-control" id="fee" name="fee" placeholder="{{t('txt_hourly_fee_placeholder')}}" noWhitespace [(ngModel)]="role.hourlyFee">
         </div>
       </div>
       <div class="row">

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AdmPermission, AdmPermissionDto, AdmRolePermission } from 'src/app/data/models/admin';
+import { AdmPermission, AdmPermissionDto, AdmRole, AdmRolePermission } from 'src/app/data/models/admin';
 import { ToasterEnum } from 'src/app/global/toaster-enum';
 import { AdmPermissionService } from 'src/app/services/adm/adm-permission.service';
+import { AdmRoleService } from 'src/app/services/adm/adm-role.service';
 import { ToasterService } from 'src/app/services/oth/toaster.service';
 
 enum PermissionType {
@@ -24,15 +25,17 @@ type TreeNode = {
   styleUrls: ['./create-roles.component.scss']
 })
 export class CreateRolesComponent implements OnInit {
-  permissionType = PermissionType;
-
   private MAIN_PARENT_PERMISSION = 5100;
+  permissionType = PermissionType;
   nodes: TreeNode[] = [];
+  role!: AdmRole;
 
   constructor(
     private permissionService: AdmPermissionService,
+    private roleService: AdmRoleService,
     private toastService: ToasterService
   ) {
+    this.role = new AdmRole();
   }
 
   ngOnInit(): void {
@@ -112,7 +115,7 @@ export class CreateRolesComponent implements OnInit {
     let checked = event instanceof Event ? (event.target as HTMLInputElement).checked : event;
     if (!node || !node.permission) return;
 
-    // TODO: check children
+    // check children
     this.checkChildren(checked, type, node);
     this.checkParent(checked, type, node);
   }
@@ -176,7 +179,22 @@ export class CreateRolesComponent implements OnInit {
     return permission.readPermission && permission.createPermission && permission.updatePermission && permission.deletePermission;
   }
 
+  private toRolePermissions(nodes: TreeNode[]): AdmRolePermission[] {
+    return nodes.reduce((permissions: AdmRolePermission[], curNode: TreeNode) => {
+      permissions.push(curNode.permission);
+      permissions.push(...this.toRolePermissions(curNode.children));
+      return permissions;
+    }, []);
+  }
+
   onSubmit() {
-    console.log(this.nodes);
+    this.role.rolePermissions = this.toRolePermissions(this.nodes);
+    this.roleService.save(this.role).subscribe({
+      next: _ => {
+        this.toastService.show({ type: ToasterEnum.SUCCESS, message: 'txt_changes_save_successfully' });
+        // TODO: navigate to role list
+      },
+      error: _ => this.toastService.show({ type: ToasterEnum.ERROR, message: 'txt_server_error' })
+    })
   }
 }

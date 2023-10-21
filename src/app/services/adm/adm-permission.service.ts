@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { AdmPermissionDto } from 'src/app/data/models/admin';
+import { AdmPermissionDto, AdmRole } from 'src/app/data/models/admin';
 import { BaseService } from 'src/app/services/base-service';
 import { environment } from 'src/environments/envoronment';
 
@@ -13,6 +13,10 @@ export class AdmPermissionService extends BaseService {
 
   constructor(private http: HttpClient) {
     super();
+  }
+
+  create(role: AdmRole) {
+    return this.http.post(baseURL, role);
   }
 
   findAll(queryParams: Map<string, string> = new Map()) {

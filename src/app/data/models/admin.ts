@@ -29,8 +29,12 @@ export class AdmPermissionDto {
 
 export class AdmRole {
   public roleId!: number;
+  public organizationId!: number;
+  public subOrganizationId!: number;
   public name!: string;
   public description!: string;
+  public hourlyFee!: number;
+  public rolePermissions: AdmRolePermission[] = [];
 }
 
 export class AdmRolePermission {
