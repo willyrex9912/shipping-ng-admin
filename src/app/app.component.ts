@@ -8,10 +8,15 @@ import {Router} from "@angular/router";
 })
 export class AppComponent {
 
+  localStorage = localStorage;
+
   constructor(private router: Router) {
   }
   showLogin() {
     this.router.navigate(['/login']);
   }
 
+  logout(){
+    localStorage.removeItem('token');
+  }
 }

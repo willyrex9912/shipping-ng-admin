@@ -14,9 +14,15 @@
       </ul>
 
       <div class="col-md-3 text-end">
-        <div class="text-end">
+        <div class="text-end" *ngIf="localStorage.getItem('token') == null">
           <button type="button" class="btn btn-outline-light me-2" (click)="showLogin()">Login</button>
           <button type="button" class="btn btn-outline-warning">Sign-up</button>
+        </div>
+        <div class="nav-item dropdown" *ngIf="localStorage.getItem('token') != null;">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Usuario</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="" (click)="logout()">Cerrar sesion</a></li>
+          </ul>
         </div>
       </div>
     </div>
