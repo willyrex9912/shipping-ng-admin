@@ -1,10 +1,35 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AdmRoleDto } from 'src/app/data/models/admin';
+import { ToasterEnum } from 'src/app/global/toaster-enum';
+import { AdmRoleService } from 'src/app/services/adm/adm-role.service';
+import { ToasterService } from 'src/app/services/oth/toaster.service';
 
 @Component({
   selector: 'app-roles-list',
   templateUrl: './roles-list.component.html',
   styleUrls: ['./roles-list.component.scss']
 })
-export class RolesListComponent {
+export class RolesListComponent implements OnInit {
 
+  roles: AdmRoleDto[] = [];
+
+  constructor(
+    private roleService: AdmRoleService,
+    private toastService: ToasterService
+  ) {
+  }
+
+  ngOnInit(): void {
+    this.findAll();
+  }
+
+  findAll() {
+    this.roleService.findAll().subscribe({
+      next: (response) => {
+        this.roles = response.body ?? [];
+        const total = Number(response.headers.get('X-Total-Count'));
+      },
+      error: _ => this.toastService.show({ type: ToasterEnum.ERROR, message: 'txt_server_error' })
+    });
+  }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AdmPermission, AdmPermissionDto, AdmRole, AdmRolePermission } from 'src/app/data/models/admin';
 import { ToasterEnum } from 'src/app/global/toaster-enum';
 import { AdmPermissionService } from 'src/app/services/adm/adm-permission.service';
@@ -30,27 +30,43 @@ export class CreateRolesComponent implements OnInit {
   permissionType = PermissionType;
   nodes: TreeNode[] = [];
   role!: AdmRole;
+  roleId!: number;
 
   constructor(
     private permissionService: AdmPermissionService,
     private roleService: AdmRoleService,
     private toastService: ToasterService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {
     this.role = new AdmRole();
   }
 
   ngOnInit(): void {
+    this.roleId = Number(this.route.snapshot.paramMap.get('roleId') ?? 0);
+
     this.permissionService.findAll(
       new Map<string, string>()
         .set('page', '0')
         .set('size', '0')
     ).subscribe({
       next: (response) => {
-        const permissions = response.body ?? [];
-        this.nodes = this.toTreeNode(permissions);
-
-        const total = Number(response.headers.get('X-Total-Count') ?? 0);
+        if (this.roleId) {
+          this.roleService.findById(this.roleId).subscribe({
+            next: (admRole) => {
+              this.role = admRole;
+              const permissions = response.body ?? [];
+              this.nodes = this.toTreeNode(permissions);
+            },
+            error: _ => {
+              this.toastService.show({ type: ToasterEnum.ERROR, message: 'txt_server_error' });
+              void this.router.navigate(['/administration/roles']);
+            }
+          });
+        } else {
+          const permissions = response.body ?? [];
+          this.nodes = this.toTreeNode(permissions);
+        }
       },
       error: _ => this.toastService.show({ type: ToasterEnum.ERROR, message: 'txt_server_error' })
     });
@@ -60,8 +76,7 @@ export class CreateRolesComponent implements OnInit {
     const tmp: AdmPermissionDto[] = [];
     const result: TreeNode[] = permissions.reduce((tree: TreeNode[], curPermission: AdmPermissionDto) => {
       if (curPermission.parentPermissionId == this.MAIN_PARENT_PERMISSION) {
-        curPermission.level = 0;
-        tree.push({ permission: this.toRolePermission(curPermission), children: [] });
+        tree.push({ permission: this.toRolePermission(curPermission, 0), children: [] });
       } else {
         tmp.push(curPermission);
       }
@@ -73,7 +88,6 @@ export class CreateRolesComponent implements OnInit {
       this.toTreeNodeAux(treeNode, tmp, 1);
     });
 
-    console.log(result);
     return result;
   }
 
@@ -82,8 +96,7 @@ export class CreateRolesComponent implements OnInit {
 
     parent.children = permissions.reduce((tree: TreeNode[], curPermission: AdmPermissionDto) => {
       if (parent.permission.permission.permissionId === curPermission.parentPermissionId) {
-        curPermission.level = level;
-        tree.push({ parent: parent, permission: this.toRolePermission(curPermission), children: [] });
+        tree.push({ parent: parent, permission: this.toRolePermission(curPermission, level), children: [] });
       } else {
         tmp.push(curPermission);
       }
@@ -93,10 +106,21 @@ export class CreateRolesComponent implements OnInit {
 
     parent.children.forEach(treeNode => {
       this.toTreeNodeAux(treeNode, tmp, level + 1);
-    })
+    });
   }
 
-  private toRolePermission(permission: AdmPermissionDto) {
+  private toRolePermission(permission: AdmPermissionDto, level: number) {
+    if (this.roleId) {
+      const permissionId = permission.permissionId;
+      const originalPermission = this.role.rolePermissions.find(per => per.permission.permissionId == permissionId);
+      if (originalPermission) {
+        originalPermission.level = level;
+        originalPermission.parentPermissionId = permission.parentPermissionId;
+        return originalPermission;
+      }
+    }
+
+    permission.level = level;
     const rolePermission = new AdmRolePermission();
     rolePermission.permission = new AdmPermission();
     rolePermission.permission = Object.assign(rolePermission.permission, permission);

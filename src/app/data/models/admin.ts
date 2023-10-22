@@ -27,6 +27,13 @@ export class AdmPermissionDto {
   public level!: number;
 }
 
+export class AdmRoleDto {
+  public roleId!: number;
+  public name!: string;
+  public description!: string;
+  public hourlyFee!: number;
+}
+
 export class AdmRole {
   public roleId!: number;
   public organizationId!: number;

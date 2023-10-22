@@ -16,6 +16,7 @@
   "txt_organizations": "Organizaciones",
   "txt_permission": "Permiso",
   "txt_create_role": "Crear rol",
+  "txt_edit_role": "Editar rol",
   "txt_all": "Todos",
   "txt_read": "Leer",
   "txt_update": "Actualizar",
@@ -26,5 +27,9 @@
   "txt_hourly_fee": "Tarifa por hora",
   "txt_hourly_fee_placeholder": "Ingresa una tarifa por hora para el rol",
   "txt_changes_save_successfully": "Cambios guardados con éxito",
-  "error": "Error"
+  "error": "Error",
+  "txt_roles": "Roles",
+  "txt_save": "Guardar",
+  "success": "Éxito",
+  "txt_actions": "Acciones"
 }
