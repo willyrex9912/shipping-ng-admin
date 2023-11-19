@@ -27,7 +27,7 @@
             <td>{{ v.vehicleId }}</td>
             <td>{{ v.capacity }}</td>
             <td>{{ v.avgCostPerKm }}</td>
-            <td>{{ v.categoryStatusId }}</td>
+            <td>{{ getStatus(v.categoryStatusId) }}</td>
             <td>{{ v.organization.orgName }}</td>
             <td>
               <button class="btn btn-sm text-primary" [routerLink]="['edit', v.vehicleId]">

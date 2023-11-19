@@ -39,5 +39,17 @@
   "txt_vehicle_category": "Estado del vehiculo",
   "txt_vehicle_organization": "Organización",
   "txt_edit_vehicle": "Editar vehículo",
-  "txt_vehicle_saved": "Vehículo guardado"
+  "txt_vehicle_saved": "Vehículo guardado",
+  "parameter": {
+    "txt_title": "Parámetros",
+    "txt_create": "Crear parámetro",
+    "txt_edit": "Editar parámetro",
+    "txt_save": "Guardar parametro",
+    "txt_saved": "Parámetro guardado",
+    "txt_value": "Valor del parámetro",
+    "txt_value_placeholder": "Ingresa el valor del parámetro",
+    "txt_description": "Descripción del parámetro",
+    "txt_description_placeholder": "Ingresa la descripción del parámetro",
+    "txt_category": "Categoría de parámetro"
+  }
 }

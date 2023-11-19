@@ -6,6 +6,8 @@ import { OrganizationListComponent } from './views/organization-list/organizatio
 import { CreateOrganizationComponent } from './views/create-organization/create-organization.component';
 import {VehiclesListComponent} from "./views/vehicles/vehicles-list/vehicles-list.component";
 import {VehiclesCreateComponent} from "./views/vehicles/vehicles-create/vehicles-create.component";
+import {ParametersListComponent} from "./views/parameter/parameters-list/parameters-list.component";
+import {ParametersCreateComponent} from "./views/parameter/parameters-create/parameters-create.component";
 
 const routes: Routes = [
   {
@@ -33,6 +35,14 @@ const routes: Routes = [
       { path: '', component: VehiclesListComponent },
       { path: 'create', component: VehiclesCreateComponent },
       { path: 'edit/:vehicleId', component: VehiclesCreateComponent }
+    ]
+  },
+  {
+    path: 'parameters',
+    children: [
+      { path: '', component: ParametersListComponent },
+      { path: 'create', component: ParametersCreateComponent },
+      { path: 'edit/:parameterId', component: ParametersCreateComponent }
     ]
   }
 ];

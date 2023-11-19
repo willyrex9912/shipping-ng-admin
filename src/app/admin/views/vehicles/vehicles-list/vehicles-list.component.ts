@@ -30,5 +30,14 @@ export class VehiclesListComponent implements OnInit {
     });
   }
 
+  getStatus(status: number): string {
+    switch (status) {
+      case 10518: return 'Activo';
+      case 10519: return 'Fuera de servicio';
+      case 10520: return 'En mantenimiento';
+      case 10521: return 'En ruta';
+      default: return 'Estado desconocido';
+    }
+  }
 
 }

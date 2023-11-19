@@ -13,6 +13,8 @@ import { CreateUserComponent } from './views/users/create-user/create-user.compo
 import {NgbDropdown, NgbDropdownItem, NgbDropdownMenu, NgbDropdownToggle} from "@ng-bootstrap/ng-bootstrap";
 import { VehiclesListComponent } from './views/vehicles/vehicles-list/vehicles-list.component';
 import { VehiclesCreateComponent } from './views/vehicles/vehicles-create/vehicles-create.component';
+import { ParametersListComponent } from './views/parameter/parameters-list/parameters-list.component';
+import { ParametersCreateComponent } from './views/parameter/parameters-create/parameters-create.component';
 
 
 @NgModule({
@@ -23,7 +25,9 @@ import { VehiclesCreateComponent } from './views/vehicles/vehicles-create/vehicl
     CreateRolesComponent,
     CreateUserComponent,
     VehiclesListComponent,
-    VehiclesCreateComponent
+    VehiclesCreateComponent,
+    ParametersListComponent,
+    ParametersCreateComponent
   ],
   imports: [
     CommonModule,

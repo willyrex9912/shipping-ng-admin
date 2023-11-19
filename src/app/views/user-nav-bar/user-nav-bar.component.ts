@@ -1,4 +1,4 @@
-import {Component, inject} from '@angular/core';
+import {Component, effect, inject} from '@angular/core';
 import {SessionService} from "../../app-commons/services/session.service";
 import {UserInfo} from "../../auth/models/user-info";
 import {Router} from "@angular/router";
@@ -24,11 +24,17 @@ export class UserNavBarComponent {
     parameters: { name: "/administration/parameters", show: true },
   };
 
-  constructor() {}
+  constructor() {
+    effect(() => {
+      console.log("Pass in effect user nav bar");
+      this.userInfo = this.session.userInfoSignal();
+    });
+  }
 
   logout(){
     localStorage.removeItem('token');
     this.session.userInfoSignal.set(undefined);
-    this.router.navigate(['/']);
+    void this.router.navigate(['/']);
   }
+
 }

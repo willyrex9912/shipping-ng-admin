@@ -77,3 +77,10 @@ export class AdmVehicle {
     this.organization = new AdmOrganization();
   }
 }
+
+export class AdmParameter {
+  public parameterId!: number;
+  public value!: string;
+  public description!: string;
+  public categoryParameterId!: number;
+}

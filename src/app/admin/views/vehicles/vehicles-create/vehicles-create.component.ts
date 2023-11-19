@@ -20,8 +20,8 @@ enum VehicleStatus {
 })
 export class VehiclesCreateComponent implements OnInit {
 
-  private vehicleService: AdmVehicleService = inject(AdmVehicleService);
   private organizationService: AdmOrganizationService = inject(AdmOrganizationService);
+  private vehicleService: AdmVehicleService = inject(AdmVehicleService);
   private toasterService: ToasterService = inject(ToasterService);
   private route: ActivatedRoute = inject(ActivatedRoute);
   private router: Router = inject(Router);
@@ -60,7 +60,6 @@ export class VehiclesCreateComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.vehicle);
     if (!this.vehicle.organization.organizationId || !this.vehicle.categoryStatusId || !this.vehicle.avgCostPerKm || !this.vehicle.capacity)
       return this.toasterService.show({type: ToasterEnum.ERROR, message: 'txt_complete_all_fields'});
 

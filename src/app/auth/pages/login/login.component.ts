@@ -31,7 +31,7 @@ export class LoginComponent {
           localStorage.setItem('token', response.value);
           this.session.userInfoSignal.set(this.authService.getUserInfo());
           console.log(this.session.userInfoSignal())
-          this.router.navigate(['/homepage']);
+          void this.router.navigate(['/homepage']);
         },
         error: error => console.log("Error", error.error)
       });
