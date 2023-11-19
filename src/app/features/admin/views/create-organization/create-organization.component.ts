@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import {AdmOrganization} from "../../../data/models/admin";
-import {AdmOrganizationService} from "../../../services/adm/AdmOrganization.service";
-import {ToasterService} from "../../../services/oth/toaster.service";
-import {ToasterEnum} from "../../../global/toaster-enum";
+import {AdmOrganization} from "../../../../data/models/admin";
+import {AdmOrganizationService} from "../../../../services/adm/AdmOrganization.service";
+import {ToasterService} from "../../../../services/oth/toaster.service";
+import {ToasterEnum} from "../../../../global/toaster-enum";
 import {Router} from "@angular/router";
 
 @Component({
