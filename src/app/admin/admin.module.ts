@@ -9,6 +9,9 @@ import { AppCommonsModule } from '../app-commons/app-commons.module';
 import { FormsModule } from '@angular/forms';
 import { RolesListComponent } from './views/roles/roles-list/roles-list.component';
 import { CreateRolesComponent } from './views/roles/create-roles/create-roles.component';
+import { CreateUserComponent } from './views/users/create-user/create-user.component';
+import { AdminHomepageComponent } from './views/admin-homepage/admin-homepage.component';
+import {NgbDropdown, NgbDropdownItem, NgbDropdownMenu, NgbDropdownToggle} from "@ng-bootstrap/ng-bootstrap";
 
 
 @NgModule({
@@ -16,14 +19,20 @@ import { CreateRolesComponent } from './views/roles/create-roles/create-roles.co
     CreateOrganizationComponent,
     OrganizationListComponent,
     RolesListComponent,
-    CreateRolesComponent
+    CreateRolesComponent,
+    CreateUserComponent,
+    AdminHomepageComponent
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
     TranslocoModule,
     FormsModule,
-    AppCommonsModule
+    AppCommonsModule,
+    NgbDropdown,
+    NgbDropdownItem,
+    NgbDropdownMenu,
+    NgbDropdownToggle
   ]
 })
 export class AdminModule {

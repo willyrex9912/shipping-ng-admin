@@ -7,13 +7,15 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {FormsModule} from "@angular/forms";
 import {CommonModule} from "@angular/common";
 import { RequiredFieldComponent } from './components/required-field/required-field.component';
+import {ManagerHomepageComponent} from "./components/manager-homepage.component";
 
 @NgModule({
   declarations: [
     NotFoundComponent,
     NoWitheSpaceDirective,
     ToasterComponent,
-    RequiredFieldComponent
+    RequiredFieldComponent,
+    ManagerHomepageComponent
   ],
   imports: [
     TranslocoModule,

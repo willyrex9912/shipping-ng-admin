@@ -11,7 +11,7 @@ export class AdmPermission {
   public name!: string;
   public sref!: string;
   public icon!: string;
-  public priority: number;
+  public priority!: number;
 }
 
 export class AdmPermissionDto {
@@ -21,7 +21,7 @@ export class AdmPermissionDto {
   public name!: string;
   public sref!: string;
   public icon!: string;
-  public priority: number;
+  public priority!: number;
 
   // just for frontend
   public level!: number;
