@@ -13,7 +13,7 @@ export class SessionService {
 
   constructor() {
     if (this.authService.isAuthenticated()) {
-      this.userInfoSignal.set(this.authService.getuserInfo());
+      this.userInfoSignal.set(this.authService.getUserInfo());
     }
   }
 }

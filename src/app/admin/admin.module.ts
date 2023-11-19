@@ -10,7 +10,6 @@ import { FormsModule } from '@angular/forms';
 import { RolesListComponent } from './views/roles/roles-list/roles-list.component';
 import { CreateRolesComponent } from './views/roles/create-roles/create-roles.component';
 import { CreateUserComponent } from './views/users/create-user/create-user.component';
-import { AdminHomepageComponent } from './views/admin-homepage/admin-homepage.component';
 import {NgbDropdown, NgbDropdownItem, NgbDropdownMenu, NgbDropdownToggle} from "@ng-bootstrap/ng-bootstrap";
 
 
@@ -20,8 +19,7 @@ import {NgbDropdown, NgbDropdownItem, NgbDropdownMenu, NgbDropdownToggle} from "
     OrganizationListComponent,
     RolesListComponent,
     CreateRolesComponent,
-    CreateUserComponent,
-    AdminHomepageComponent
+    CreateUserComponent
   ],
   imports: [
     CommonModule,

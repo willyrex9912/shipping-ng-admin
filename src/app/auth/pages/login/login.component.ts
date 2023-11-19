@@ -30,7 +30,7 @@ export class LoginComponent {
       .subscribe({
         next: response => {
           localStorage.setItem('token', response.value);
-          this.session.userInfoSignal.set(this.authService.getuserInfo());
+          this.session.userInfoSignal.set(this.authService.getUserInfo());
           console.log(this.session.userInfoSignal())
           this.router.navigate(['/homepage']);
         },

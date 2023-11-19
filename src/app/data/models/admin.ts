@@ -56,3 +56,12 @@ export class AdmRolePermission {
   public level!: number;
   public parentPermissionId!: number;
 }
+
+export class RequestRoleRoutesDto {
+  public rolIds!: number[];
+}
+
+export class AdmRoleRouteDto {
+  public permissionId!: number;
+  public routeRef!: string;
+}

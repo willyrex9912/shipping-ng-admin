@@ -5,6 +5,9 @@ import {Credentials} from "./models/credentials";
 import {Token} from "./models/token";
 import {JwtService} from "../app-commons/services/jwt-service";
 import {UserInfo} from "./models/user-info";
+import {AdmRoleService} from "../services/adm/adm-role.service";
+import {AdmRoleRouteDto, RequestRoleRoutesDto} from "../data/models/admin";
+import {catchError, map, Observable, of} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +18,7 @@ export class AuthService {
 
   private http: HttpClient = inject(HttpClient);
   private jwtService: JwtService = inject(JwtService);
+  private rolService: AdmRoleService = inject(AdmRoleService);
 
   constructor() {
   }
@@ -33,7 +37,18 @@ export class AuthService {
     return token && !this.jwtService.isTokenExpired(token);
   }
 
-  getuserInfo(): UserInfo | undefined{
+  hasPermission(permission: string): Observable<boolean> {
+    let routes: AdmRoleRouteDto[] = [];
+    let requestBody = new RequestRoleRoutesDto();
+    requestBody.rolIds = this.getUserInfo()!.rolesId;
+
+    return this.rolService.getPermissionsByRol(requestBody).pipe(
+      map((routes: AdmRoleRouteDto[]) => routes.some(route => route.routeRef === permission)),
+      catchError(() => of(false))
+    );
+  }
+
+  getUserInfo(): UserInfo | undefined{
     let token = localStorage.getItem('token');
     if (!token) return undefined;
     let decodedToken = this.jwtService.decodeToken(token);

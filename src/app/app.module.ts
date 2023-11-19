@@ -11,14 +11,16 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {AuthInterceptor} from "./auth/auth.interceptor";
 import {AuthModule} from "./auth/auth.module";
 import {NavBarComponent} from "./views/nav-bar/nav-bar.component";
-import {AdminNavBarComponent} from "./views/admin-nav-bar/admin-nav-bar.component";
+import {UserNavBarComponent} from "./views/user-nav-bar/user-nav-bar.component";
+import {UserHomepageComponent} from "./views/user-homepage/user-homepage.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     NavBarComponent,
-    AdminNavBarComponent
+    UserNavBarComponent,
+    UserHomepageComponent
   ],
   imports: [
     AppCommonsModule,

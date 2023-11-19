@@ -7,10 +7,10 @@
         </a>
       </div>
 
-      <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-        <a routerLink="/" class="nav-link px-2 text-white">Roles</a>
-        <a routerLink="/" class="nav-link px-2 text-white">Permisos</a>
-        <a routerLink="/" class="nav-link px-2 text-white">Usuarios</a>
+      <ul class="nav col- 12 col-md-auto mb-2 justify-content-center mb-md-0">
+        <a *ngIf="paths.roles.show" routerLink="{{paths.roles.name}}" class="nav-link px-2 text-white">Roles</a>
+        <a *ngIf="paths.organizations.show" routerLink="{{paths.organizations.name}}" class="nav-link px-2 text-white">Organizaciones</a>
+        <a *ngIf="paths.users.show" routerLink="{{paths.users.name}}" class="nav-link px-2 text-white">Usuarios</a>
       </ul>
 
       <div class="col-md-3 text-end">

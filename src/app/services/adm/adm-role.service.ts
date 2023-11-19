@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { AdmRole, AdmRoleDto } from 'src/app/data/models/admin';
+import {AdmRole, AdmRoleDto, AdmRoleRouteDto, RequestRoleRoutesDto} from 'src/app/data/models/admin';
 import { BaseService } from 'src/app/services/base-service';
 import { environment } from 'src/environments/envoronment';
 
@@ -29,5 +29,9 @@ export class AdmRoleService extends BaseService {
       return this.http.put(`${baseURL}/${role.roleId}`, role);
     }
     return this.http.post(baseURL, role);
+  }
+
+  getPermissionsByRol(request: RequestRoleRoutesDto) {
+    return this.http.post<AdmRoleRouteDto[]>(`${baseURL}/routes`, request);
   }
 }

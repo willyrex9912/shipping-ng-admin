@@ -4,10 +4,8 @@ import { CreateRolesComponent } from 'src/app/admin/views/roles/create-roles/cre
 import { RolesListComponent } from 'src/app/admin/views/roles/roles-list/roles-list.component';
 import { OrganizationListComponent } from './views/organization-list/organization-list.component';
 import { CreateOrganizationComponent } from './views/create-organization/create-organization.component';
-import {AdminHomepageComponent} from "./views/admin-homepage/admin-homepage.component";
 
 const routes: Routes = [
-  { path: '', component:AdminHomepageComponent },
   {
     path: 'organizations',
     children: [

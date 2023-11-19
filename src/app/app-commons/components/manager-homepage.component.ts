@@ -18,7 +18,7 @@ export class ManagerHomepageComponent implements OnInit {
         this.router.navigate(['/home']);
         return;
       }
-      this.router.navigate(['/administration']);
+      this.router.navigate(['/userhome']);
     }
 
 }
