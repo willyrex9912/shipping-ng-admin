@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CreateRolesComponent } from 'src/app/features/admin/views/roles/create-roles/create-roles.component';
 import { RolesListComponent } from 'src/app/features/admin/views/roles/roles-list/roles-list.component';
-import { OrganizationListComponent } from './views/organization-list/organization-list.component';
-import { CreateOrganizationComponent } from './views/create-organization/create-organization.component';
+import { OrganizationListComponent } from './views/organization/organization-list/organization-list.component';
+import { CreateOrganizationComponent } from './views/organization/create-organization/create-organization.component';
 
 const routes: Routes = [
   {

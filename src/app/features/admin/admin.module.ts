@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { AdminRoutingModule } from './admin-routing.module';
-import { CreateOrganizationComponent } from './views/create-organization/create-organization.component';
-import { OrganizationListComponent } from './views/organization-list/organization-list.component';
+import { CreateOrganizationComponent } from './views/organization/create-organization/create-organization.component';
+import { OrganizationListComponent } from './views/organization/organization-list/organization-list.component';
 import { TranslocoModule } from '@ngneat/transloco';
 import { AppCommonsModule } from '../../app-commons/app-commons.module';
 import { FormsModule } from '@angular/forms';
