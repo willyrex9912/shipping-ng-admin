@@ -11,7 +11,7 @@ export class AdmPermission {
   public name!: string;
   public sref!: string;
   public icon!: string;
-  public priority: number;
+  public priority!: number;
 }
 
 export class AdmPermissionDto {
@@ -21,7 +21,7 @@ export class AdmPermissionDto {
   public name!: string;
   public sref!: string;
   public icon!: string;
-  public priority: number;
+  public priority!: number;
 
   // just for frontend
   public level!: number;
@@ -55,4 +55,33 @@ export class AdmRolePermission {
   // just for frontend
   public level!: number;
   public parentPermissionId!: number;
+}
+
+export class AdmPackage {
+  public packageId!:number;
+  public weight!:number;
+  public description!:string;
+  public entryDate!:string;
+  public estimatedCost!:number;
+  public sourceOrganization!:AdmOrganization;
+  public targetOrganization!:AdmOrganization;
+  public sourceCustomerName!:string;
+  public sourceCustomerContact!:string;
+  public targetCustomerName!:string;
+  public targetCustomerContact!:string;
+  public packageCode!:string;
+}
+
+export class AdmPackageDto {
+  public packageId!:number;
+  public weight!:number;
+  public description!:string;
+  public estimatedCost!:number;
+  public sourceOrganizationName!:string;
+  public targetOrganizationName!:string;
+  public sourceCustomerName!:string;
+  public sourceCustomerContact!:string;
+  public targetCustomerName!:string;
+  public targetCustomerContact!:string;
+  public packageCode!:string;
 }

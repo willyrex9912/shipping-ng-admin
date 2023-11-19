@@ -1,0 +1,78 @@
+<div class="row m-5" *transloco="let t">
+  <h1 class="h3 mb-5">{{t('txt_register_package')}}</h1>
+  <form>
+    <div class="row">
+      <div class="mb-3 col-lg-6 col-12">
+        <span class="text-danger fw-bold me-2 me-lg-2">*</span>
+        <label for="description" class="form-label">{{t('txt_description')}}</label>
+        <input type="text" class="form-control" id="description" name="description" placeholder="{{t('txt_description_placeholder')}}"
+               noWhitespace [(ngModel)]="package.description">
+      </div>
+      <div class="mb-3 col-lg-6 col-12">
+        <span class="text-danger fw-bold me-2 me-lg-2">*</span>
+        <label for="weight" class="form-label">{{t('txt_weight')}}</label>
+        <input type="number" class="form-control" id="weight" name="weight" placeholder="{{t('txt_description_placeholder')}}"
+               noWhitespace [(ngModel)]="package.weight">
+      </div>
+      <div class="mb-3 col-lg-6 col-12">
+        <span class="text-danger fw-bold me-2 me-lg-2">*</span>
+        <label for="sourceOrg" class="form-label">{{t('txt_source_organization')}}</label>
+        <ng-select id="sourceOrg" class="w-100" name="sourceOrg" [(ngModel)]="package.sourceOrganization"
+                   [items]="organizations"
+                   [multiple]="false" [searchable]="true" [closeOnSelect]="true" [clearable]="false"
+                   [hideSelected]="true" placeholder="{{t('txt_organization_placeholder')}}"
+        >
+          <ng-template ng-label-tmp let-item="item">
+            <span>{{item.orgName}}</span>
+          </ng-template>
+          <ng-template ng-option-tmp let-item="item" let-index="index">
+            <span>{{item.orgName}}</span>
+          </ng-template>
+        </ng-select>
+      </div>
+      <div class="mb-3 col-lg-6 col-12">
+        <span class="text-danger fw-bold me-2 me-lg-2">*</span>
+        <label for="targetOrg" class="form-label">{{t('txt_target_organization')}}</label>
+        <ng-select id="targetOrg" class="w-100" name="targetOrg" [(ngModel)]="package.targetOrganization"
+                   [items]="organizations"
+                   [multiple]="false" [searchable]="true" [closeOnSelect]="true" [clearable]="false"
+                   [hideSelected]="true" placeholder="{{t('txt_organization_placeholder')}}"
+        >
+          <ng-template ng-label-tmp let-item="item">
+            <span>{{item.orgName}}</span>
+          </ng-template>
+          <ng-template ng-option-tmp let-item="item" let-index="index">
+            <span>{{item.orgName}}</span>
+          </ng-template>
+        </ng-select>
+      </div>
+      <div class="mb-3 col-lg-6 col-12">
+        <span class="text-danger fw-bold me-2 me-lg-2">*</span>
+        <label for="sourceCustomerName" class="form-label">{{t('txt_source_customer_name')}}</label>
+        <input type="text" class="form-control" id="sourceCustomerName" name="sourceCustomerName" placeholder="{{t('txt_description_placeholder')}}"
+               noWhitespace [(ngModel)]="package.sourceCustomerName">
+      </div>
+      <div class="mb-3 col-lg-6 col-12">
+        <span class="text-danger fw-bold me-2 me-lg-2">*</span>
+        <label for="sourceCustomerContact" class="form-label">{{t('txt_source_customer_contact')}}</label>
+        <input type="text" class="form-control" id="sourceCustomerContact" name="sourceCustomerContact" placeholder="{{t('txt_description_placeholder')}}"
+               noWhitespace [(ngModel)]="package.sourceCustomerContact">
+      </div>
+      <div class="mb-3 col-lg-6 col-12">
+        <span class="text-danger fw-bold me-2 me-lg-2">*</span>
+        <label for="targetCustomerName" class="form-label">{{t('txt_target_customer_name')}}</label>
+        <input type="text" class="form-control" id="targetCustomerName" name="targetCustomerName" placeholder="{{t('txt_description_placeholder')}}"
+               noWhitespace [(ngModel)]="package.targetCustomerName">
+      </div>
+      <div class="mb-3 col-lg-6 col-12">
+        <span class="text-danger fw-bold me-2 me-lg-2">*</span>
+        <label for="targetCustomerContact" class="form-label">{{t('txt_target_customer_contact')}}</label>
+        <input type="text" class="form-control" id="targetCustomerContact" name="targetCustomerContact" placeholder="{{t('txt_description_placeholder')}}"
+               noWhitespace [(ngModel)]="package.targetCustomerContact">
+      </div>
+      <div class="d-flex flex-column align-items-end">
+        <button type="submit" class="btn btn-warning btn-wide" (click)="save()">{{t('txt_create')}}</button>
+      </div>
+    </div>
+  </form>
+</div>

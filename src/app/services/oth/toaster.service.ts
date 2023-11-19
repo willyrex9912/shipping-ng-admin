@@ -34,4 +34,28 @@ export class ToasterService {
     }
   }
 
+  public showErrorMessage(message:string){
+    this.show({
+      type:ToasterEnum.ERROR,
+      message: message,
+      header:'txt_error',
+    });
+  }
+
+  public showDefaultErrorMessage(){
+    this.show({
+      type:ToasterEnum.ERROR,
+      message: 'txt_server_error',
+      header:'txt_error',
+    });
+  }
+
+  public showSuccessMessage(message:string){
+    this.show({
+      type:ToasterEnum.SUCCESS,
+      message:message,
+      header:"txt_success"
+    });
+  }
+
 }

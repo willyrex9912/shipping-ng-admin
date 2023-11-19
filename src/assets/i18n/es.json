@@ -31,5 +31,18 @@
   "txt_roles": "Roles",
   "txt_save": "Guardar",
   "success": "Éxito",
-  "txt_actions": "Acciones"
+  "txt_actions": "Acciones",
+  "txt_register_package": "Registar paquete",
+  "txt_weight": "Peso (Libras)",
+  "txt_organization_placeholder": "Seleccione una organización",
+  "txt_source_organization": "Organización origen",
+  "txt_target_organization": "Organización destino",
+  "msg_validation_required_field": "Este campo es requerido.",
+  "txt_source_customer_name": "Nombre cliente que envía",
+  "txt_target_customer_name": "Nombre cliente que recibe",
+  "txt_source_customer_contact": "Teléfono cliente que envía",
+  "txt_target_customer_contact": "Teléfono cliente que recibe",
+  "txt_source": "Origen",
+  "txt_target": "Destino",
+  "txt_code": "Código"
 }
