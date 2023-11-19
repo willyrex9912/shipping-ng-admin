@@ -1,6 +1,6 @@
 import {RouterModule, Routes} from "@angular/router";
-import {PackageListComponent} from "./package-list/package-list.component";
-import {PackageCrudComponent} from "./package-crud/package-crud.component";
+import {PackageListComponent} from "./views/package/package-list/package-list.component";
+import {PackageCrudComponent} from "./views/package/package-crud/package-crud.component";
 import {NgModule} from "@angular/core";
 
 const routes:Routes = [

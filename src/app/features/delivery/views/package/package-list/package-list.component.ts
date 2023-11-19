@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {AdmPackageDto} from "../../../data/models/admin";
-import {AdmPackageService} from "../../../services/adm/adm-package.service";
-import {ToasterService} from "../../../services/oth/toaster.service";
+import {AdmPackageDto} from "../../../../../data/models/admin";
+import {AdmPackageService} from "../../../../../services/adm/adm-package.service";
+import {ToasterService} from "../../../../../services/oth/toaster.service";
 
 @Component({
   selector: 'app-package-list',

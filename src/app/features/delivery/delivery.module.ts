@@ -1,7 +1,7 @@
 import {NgModule} from "@angular/core";
-import {PackageCrudComponent} from "./package-crud/package-crud.component";
+import {PackageCrudComponent} from "./views/package/package-crud/package-crud.component";
 import {AppCommonsModule} from "../../app-commons/app-commons.module";
-import { PackageListComponent } from './package-list/package-list.component';
+import { PackageListComponent } from './views/package/package-list/package-list.component';
 import {DeliveryRoutingModule} from "./delivery-routing.module";
 import {FormsModule} from "@angular/forms";
 import {TranslocoDirective} from "@ngneat/transloco";
