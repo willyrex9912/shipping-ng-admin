@@ -44,5 +44,18 @@
   "txt_target_customer_contact": "Teléfono cliente que recibe",
   "txt_source": "Origen",
   "txt_target": "Destino",
-  "txt_code": "Código"
+  "txt_code": "Código",
+  "txt_register_operation_cost": "Registrar costo de operación",
+  "txt_category_cost_placeholder": "Seleccione la categoría del costo",
+  "txt_category_cost": "Categoría del costo",
+  "txt_amount": "Monto",
+  "txt_amount_placeholder": "Ingrese el monto",
+  "OCC_Maintenance_For_Vehicles": "Mantenimiento de vehículos",
+  "OCC_Insurance_For_Vehicles": "Aseguradora para vehículos",
+  "OCC_Packaging_Materials": "Materiales de empaquetamiento",
+  "OCC_Storage_Space": "Espacio de almacenamiento",
+  "OCC_Corporate_Taxes": "Impuestos de corporación",
+  "OCC_Variable_Costs": "Costos variables",
+  "txt_operation_costs": "Costos de operación",
+  "txt_entry_date": "Fecha de creación"
 }

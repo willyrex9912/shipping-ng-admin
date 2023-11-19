@@ -1,0 +1,32 @@
+<div class="row m-5" *transloco="let t">
+  <div class="col-12">
+    <h1 class="h3">{{t('txt_operation_costs')}}</h1>
+  </div>
+  <div class="d-flex flex-column align-items-end">
+    <button class="btn btn-warning btn-m-wide" routerLink="./create"
+    >{{t('txt_create')}}</button>
+  </div>
+  <div class="">
+    <table class="table">
+      <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">{{t('txt_category_cost')}}</th>
+        <th scope="col">{{t('txt_amount')}}</th>
+        <th scope="col">{{t('txt_entry_date')}}</th>
+      </tr>
+      </thead>
+      <tbody>
+      <ng-container *ngFor="let cost of costs ; let i = index">
+        <tr>
+          <th scope="row">{{i+1}}</th>
+          <td>{{t(cost.categoryCost.description)}}</td>
+          <td>{{cost.amount}}</td>
+          <td>{{cost.entryDate | date : 'yyyy-MM-dd HH:mm:ss'}}</td>
+        </tr>
+      </ng-container>
+      </tbody>
+    </table>
+  </div>
+  <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
+</div>

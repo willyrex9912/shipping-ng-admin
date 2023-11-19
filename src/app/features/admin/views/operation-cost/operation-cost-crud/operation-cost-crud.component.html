@@ -1,0 +1,33 @@
+<div class="row m-5" *transloco="let t">
+  <h1 class="h3 mb-5">{{t('txt_register_operation_cost')}}</h1>
+  <form>
+    <div class="row">
+      <div class="mb-3 col-lg-6 col-12">
+        <span class="text-danger fw-bold me-2 me-lg-2">*</span>
+        <label for="categoryCost" class="form-label">{{t('txt_category_cost')}}</label>
+        <ng-select id="categoryCost" class="w-100" name="categoryCost" [(ngModel)]="operationCost.categoryCost"
+                   [items]="categories"
+                   [multiple]="false" [searchable]="true" [closeOnSelect]="true" [clearable]="false"
+                   [hideSelected]="true" placeholder="{{t('txt_organization_placeholder')}}"
+        >
+          <ng-template ng-label-tmp let-item="item">
+            <span>{{t(item.description)}}</span>
+          </ng-template>
+          <ng-template ng-option-tmp let-item="item" let-index="index">
+            <span>{{t(item.description)}}</span>
+          </ng-template>
+        </ng-select>
+      </div>
+      <div class="mb-3 col-lg-6 col-12">
+        <span class="text-danger fw-bold me-2 me-lg-2">*</span>
+        <label for="amount" class="form-label">{{t('txt_amount')}}</label>
+        <input type="number" class="form-control" id="amount" name="amount" placeholder="{{t('txt_amount_placeholder')}}"
+               noWhitespace [(ngModel)]="operationCost.amount">
+      </div>
+      <div class="d-flex flex-column align-items-end">
+        <button type="submit" class="btn btn-warning btn-wide" (click)="save()">{{t('txt_create')}}</button>
+      </div>
+    </div>
+  </form>
+</div>
+

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {AdmOrganizationService} from "../../../../../services/adm/AdmOrganization.service";
+import {AdmOrganizationService} from "../../../../../services/adm/adm-organization.service";
 import {AdmOrganization} from "../../../../../data/models/admin";
 import {ToasterService} from "../../../../../services/oth/toaster.service";
 import {ToasterEnum} from "../../../../../global/toaster-enum";

@@ -9,6 +9,9 @@ import { AppCommonsModule } from '../../app-commons/app-commons.module';
 import { FormsModule } from '@angular/forms';
 import { RolesListComponent } from './views/roles/roles-list/roles-list.component';
 import { CreateRolesComponent } from './views/roles/create-roles/create-roles.component';
+import { OperationCostCrudComponent } from './views/operation-cost/operation-cost-crud/operation-cost-crud.component';
+import { OperationCostListComponent } from './views/operation-cost/operation-cost-list/operation-cost-list.component';
+import {NgSelectModule} from "@ng-select/ng-select";
 
 
 @NgModule({
@@ -16,15 +19,18 @@ import { CreateRolesComponent } from './views/roles/create-roles/create-roles.co
     CreateOrganizationComponent,
     OrganizationListComponent,
     RolesListComponent,
-    CreateRolesComponent
+    CreateRolesComponent,
+    OperationCostCrudComponent,
+    OperationCostListComponent
   ],
-  imports: [
-    CommonModule,
-    AdminRoutingModule,
-    TranslocoModule,
-    FormsModule,
-    AppCommonsModule
-  ]
+    imports: [
+        CommonModule,
+        AdminRoutingModule,
+        TranslocoModule,
+        FormsModule,
+        AppCommonsModule,
+        NgSelectModule
+    ]
 })
 export class AdminModule {
 }

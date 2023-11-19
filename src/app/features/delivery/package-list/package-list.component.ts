@@ -16,6 +16,9 @@ export class PackageListComponent implements OnInit{
     private packageService:AdmPackageService,
     private toasterService:ToasterService,
   ) {
+  }
+
+  ngOnInit(): void {
     this.packageService.findAll().subscribe({
       next: (packages) => {
         this.packages = packages.body ?? [];
@@ -23,9 +26,6 @@ export class PackageListComponent implements OnInit{
         this.toasterService.showDefaultErrorMessage();
       }
     });
-  }
-
-  ngOnInit(): void {
   }
 
 }

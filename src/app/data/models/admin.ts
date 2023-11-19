@@ -85,3 +85,26 @@ export class AdmPackageDto {
   public targetCustomerContact!:string;
   public packageCode!:string;
 }
+
+export class AdmOperationCost {
+  public operationCostId!:number;
+  public organization!:AdmOrganization;
+  public subOrganization!:AdmOrganization;
+  public categoryCost!:AdmCategory;
+  public amount!:number;
+  public entryDate!:string;
+}
+
+export class AdmOperationCostDto {
+  public operationCostId!:number;
+  public categoryCost!:AdmCategory;
+  public amount!:number;
+  public entryDate!:string;
+}
+
+export class AdmCategory {
+  public categoryId!:number;
+  public parentCategoryId!:number;
+  public internalId!:number;
+  public description!:string;
+}

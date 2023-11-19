@@ -3,7 +3,7 @@ import {AdmOrganization, AdmPackage} from "../../../data/models/admin";
 import {AdmPackageService} from "../../../services/adm/adm-package.service";
 import {ToasterService} from "../../../services/oth/toaster.service";
 import {Router} from "@angular/router";
-import {AdmOrganizationService} from "../../../services/adm/AdmOrganization.service";
+import {AdmOrganizationService} from "../../../services/adm/adm-organization.service";
 
 @Component({
   selector: 'app-package-crud',
