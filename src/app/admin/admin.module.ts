@@ -11,6 +11,8 @@ import { RolesListComponent } from './views/roles/roles-list/roles-list.componen
 import { CreateRolesComponent } from './views/roles/create-roles/create-roles.component';
 import { CreateUserComponent } from './views/users/create-user/create-user.component';
 import {NgbDropdown, NgbDropdownItem, NgbDropdownMenu, NgbDropdownToggle} from "@ng-bootstrap/ng-bootstrap";
+import { VehiclesListComponent } from './views/vehicles/vehicles-list/vehicles-list.component';
+import { VehiclesCreateComponent } from './views/vehicles/vehicles-create/vehicles-create.component';
 
 
 @NgModule({
@@ -19,7 +21,9 @@ import {NgbDropdown, NgbDropdownItem, NgbDropdownMenu, NgbDropdownToggle} from "
     OrganizationListComponent,
     RolesListComponent,
     CreateRolesComponent,
-    CreateUserComponent
+    CreateUserComponent,
+    VehiclesListComponent,
+    VehiclesCreateComponent
   ],
   imports: [
     CommonModule,

@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AdmPermissionDto, AdmRole } from 'src/app/data/models/admin';
 import { BaseService } from 'src/app/services/base-service';
-import { environment } from 'src/environments/envoronment';
+import { environment } from 'src/environments/environment';
 
 const baseURL = `${environment.baseUrl}/permissions`
 

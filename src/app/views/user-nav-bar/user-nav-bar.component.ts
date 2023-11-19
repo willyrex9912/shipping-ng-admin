@@ -1,4 +1,4 @@
-import {Component, effect, inject, OnDestroy, OnInit} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {SessionService} from "../../app-commons/services/session.service";
 import {UserInfo} from "../../auth/models/user-info";
 import {Router} from "@angular/router";
@@ -19,7 +19,9 @@ export class UserNavBarComponent {
   paths = {
     roles: { name: "/administration/roles", show: true },
     organizations: { name: "/administration/organizations", show: true },
-    users: { name: "/administration/users", show: true }
+    users: { name: "/administration/users", show: true },
+    vehicles: { name: "/administration/vehicles", show: true },
+    parameters: { name: "/administration/parameters", show: true },
   };
 
   constructor() {}

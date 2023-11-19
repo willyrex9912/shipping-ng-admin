@@ -1,5 +1,5 @@
 import {inject, Injectable} from '@angular/core';
-import {environment} from "../../environments/envoronment";
+import {environment} from "../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {Credentials} from "./models/credentials";
 import {Token} from "./models/token";
@@ -38,7 +38,6 @@ export class AuthService {
   }
 
   hasPermission(permission: string): Observable<boolean> {
-    let routes: AdmRoleRouteDto[] = [];
     let requestBody = new RequestRoleRoutesDto();
     requestBody.rolIds = this.getUserInfo()!.rolesId;
 

@@ -4,6 +4,8 @@ import { CreateRolesComponent } from 'src/app/admin/views/roles/create-roles/cre
 import { RolesListComponent } from 'src/app/admin/views/roles/roles-list/roles-list.component';
 import { OrganizationListComponent } from './views/organization-list/organization-list.component';
 import { CreateOrganizationComponent } from './views/create-organization/create-organization.component';
+import {VehiclesListComponent} from "./views/vehicles/vehicles-list/vehicles-list.component";
+import {VehiclesCreateComponent} from "./views/vehicles/vehicles-create/vehicles-create.component";
 
 const routes: Routes = [
   {
@@ -23,6 +25,14 @@ const routes: Routes = [
       { path: '', component: RolesListComponent },
       { path: 'create', component: CreateRolesComponent },
       { path: 'edit/:roleId', component: CreateRolesComponent }
+    ]
+  },
+  {
+    path: 'vehicles',
+    children: [
+      { path: '', component: VehiclesListComponent },
+      { path: 'create', component: VehiclesCreateComponent },
+      { path: 'edit/:vehicleId', component: VehiclesCreateComponent }
     ]
   }
 ];

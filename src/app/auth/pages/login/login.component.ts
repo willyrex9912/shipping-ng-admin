@@ -3,7 +3,6 @@ import {NgForm} from "@angular/forms";
 import {Credentials} from "../../models/credentials";
 import {AuthService} from "../../auth.service";
 import {Router} from "@angular/router";
-import {JwtService} from "../../../app-commons/services/jwt-service";
 import {SessionService} from "../../../app-commons/services/session.service";
 
 @Component({

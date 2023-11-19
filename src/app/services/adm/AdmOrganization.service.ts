@@ -2,7 +2,7 @@ import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {AdmOrganization} from "../../data/models/admin";
 import {Observable} from "rxjs";
-import {environment} from "../../../environments/envoronment";
+import {environment} from "../../../environments/environment";
 
 const baseUrl = environment.baseUrl + '/organizations'
 

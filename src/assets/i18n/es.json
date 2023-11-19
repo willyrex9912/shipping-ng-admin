@@ -31,5 +31,13 @@
   "txt_roles": "Roles",
   "txt_save": "Guardar",
   "success": "Éxito",
-  "txt_actions": "Acciones"
+  "txt_actions": "Acciones",
+  "txt_vehicles": "Vehículos",
+  "txt_create_vehicle": "Crear vehículo",
+  "txt_vehicle_capacity": "Capacidad",
+  "txt_vehicle_average_cost_per_km": "Costo por Km promedio",
+  "txt_vehicle_category": "Estado del vehiculo",
+  "txt_vehicle_organization": "Organización",
+  "txt_edit_vehicle": "Editar vehículo",
+  "txt_vehicle_saved": "Vehículo guardado"
 }

@@ -1,0 +1,44 @@
+<ng-container *transloco="let t">
+  <div class="row m-5" *transloco="let t">
+    <div class="col-12">
+      <h1 class="h3">{{t('txt_vehicles')}}</h1>
+    </div>
+    <div class="d-flex flex-column align-items-end my-4">
+      <button class="btn btn-warning btn-m-wide" routerLink="create"
+      >{{t('txt_create_vehicle')}}</button>
+    </div>
+    <div class="">
+      <table class="table">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Id</th>
+          <th scope="col">{{t('txt_vehicle_capacity')}}</th>
+          <th scope="col">{{t('txt_vehicle_average_cost_per_km')}}</th>
+          <th scope="col">{{t('txt_vehicle_category')}}</th>
+          <th scope="col">{{t('txt_vehicle_organization')}}</th>
+          <th scope="col">{{t('txt_actions')}}</th>
+        </tr>
+        </thead>
+        <tbody>
+        <ng-container *ngFor="let v of vehicles; let i = index">
+          <tr>
+            <th scope="row">{{ i + 1 }}</th>
+            <td>{{ v.vehicleId }}</td>
+            <td>{{ v.capacity }}</td>
+            <td>{{ v.avgCostPerKm }}</td>
+            <td>{{ v.categoryStatusId }}</td>
+            <td>{{ v.organization.orgName }}</td>
+            <td>
+              <button class="btn btn-sm text-primary" [routerLink]="['edit', v.vehicleId]">
+                <span class="material-symbols-rounded">edit_note</span>
+              </button>
+            </td>
+          </tr>
+        </ng-container>
+        </tbody>
+      </table>
+    </div>
+    <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
+  </div>
+</ng-container>

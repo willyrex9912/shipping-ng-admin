@@ -65,3 +65,15 @@ export class AdmRoleRouteDto {
   public permissionId!: number;
   public routeRef!: string;
 }
+
+export class AdmVehicle {
+  public vehicleId!: number;
+  public capacity!: number;
+  public avgCostPerKm!: number;
+  public categoryStatusId!: number;
+  public organization: AdmOrganization;
+
+  constructor() {
+    this.organization = new AdmOrganization();
+  }
+}
