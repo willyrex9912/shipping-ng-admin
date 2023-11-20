@@ -1,12 +1,12 @@
 import {Component, inject, OnInit} from '@angular/core';
-import {AdmUserService} from "../../../../services/adm/adm-user.service";
-import {ToasterService} from "../../../../services/oth/toaster.service";
+import {AdmUserService} from "../../../../../services/adm/adm-user.service";
+import {ToasterService} from "../../../../../services/oth/toaster.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {AdmOrganization, AdmRole, AdmRoleDto, AdmUser, AdmUserRol, RolUserDto} from "../../../../data/models/admin";
-import {ToasterEnum} from "../../../../global/toaster-enum";
-import {AdmOrganizationService} from "../../../../services/adm/AdmOrganization.service";
+import {AdmOrganization, AdmRole, AdmRoleDto, AdmUser, AdmUserRol, RolUserDto} from "../../../../../data/models/admin";
+import {ToasterEnum} from "../../../../../global/toaster-enum";
+import {AdmOrganizationService} from "../../../../../services/adm/AdmOrganization.service";
 import {map, Observable} from "rxjs";
-import {AdmRoleService} from "../../../../services/adm/adm-role.service";
+import {AdmRoleService} from "../../../../../services/adm/adm-role.service";
 import {HttpResponse} from "@angular/common/http";
 
 @Component({

@@ -1,8 +1,8 @@
 import {Component, inject, OnInit} from '@angular/core';
-import {AdmVehicle} from "../../../../data/models/admin";
-import {ToasterService} from "../../../../services/oth/toaster.service";
-import {AdmVehicleService} from "../../../../services/adm/adm-vehicle.service";
-import {ToasterEnum} from "../../../../global/toaster-enum";
+import {AdmVehicle} from "../../../../../data/models/admin";
+import {ToasterService} from "../../../../../services/oth/toaster.service";
+import {AdmVehicleService} from "../../../../../services/adm/adm-vehicle.service";
+import {ToasterEnum} from "../../../../../global/toaster-enum";
 
 @Component({
   selector: 'app-vehicles-list',

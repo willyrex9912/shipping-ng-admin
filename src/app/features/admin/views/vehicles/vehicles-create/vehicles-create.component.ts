@@ -1,10 +1,10 @@
 import {Component, inject, OnInit} from '@angular/core';
-import {AdmOrganization, AdmVehicle} from "../../../../data/models/admin";
-import {AdmVehicleService} from "../../../../services/adm/adm-vehicle.service";
+import {AdmOrganization, AdmVehicle} from "../../../../../data/models/admin";
+import {AdmVehicleService} from "../../../../../services/adm/adm-vehicle.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {ToasterService} from "../../../../services/oth/toaster.service";
-import {ToasterEnum} from "../../../../global/toaster-enum";
-import {AdmOrganizationService} from "../../../../services/adm/AdmOrganization.service";
+import {ToasterService} from "../../../../../services/oth/toaster.service";
+import {ToasterEnum} from "../../../../../global/toaster-enum";
+import {AdmOrganizationService} from "../../../../../services/adm/AdmOrganization.service";
 
 enum VehicleStatus {
   ACTIVE = 10518,

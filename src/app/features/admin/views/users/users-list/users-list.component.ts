@@ -1,8 +1,8 @@
 import {Component, inject, OnInit} from '@angular/core';
-import {AdmUserService} from "../../../../services/adm/adm-user.service";
-import {ToasterService} from "../../../../services/oth/toaster.service";
-import {AdmUser} from "../../../../data/models/admin";
-import {ToasterEnum} from "../../../../global/toaster-enum";
+import {AdmUserService} from "../../../../../services/adm/adm-user.service";
+import {ToasterService} from "../../../../../services/oth/toaster.service";
+import {AdmUser} from "../../../../../data/models/admin";
+import {ToasterEnum} from "../../../../../global/toaster-enum";
 
 @Component({
   selector: 'app-users-list',

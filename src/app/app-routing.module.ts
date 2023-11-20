@@ -15,7 +15,7 @@ const routes: Routes = [
   {
     path: 'administration',
     canActivate: mapToCanActivate([AccessGuard]),
-    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
+    loadChildren: () => import('./features/admin/admin.module').then(m => m.AdminModule)
   },
   { path: '**', component: NotFoundComponent}
 ];

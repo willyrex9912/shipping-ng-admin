@@ -1,9 +1,9 @@
 import {Component, inject, OnInit} from '@angular/core';
-import {AdmParameterService} from "../../../../services/adm/adm-parameter.service";
-import {ToasterService} from "../../../../services/oth/toaster.service";
+import {AdmParameterService} from "../../../../../services/adm/adm-parameter.service";
+import {ToasterService} from "../../../../../services/oth/toaster.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {AdmParameter} from "../../../../data/models/admin";
-import {ToasterEnum} from "../../../../global/toaster-enum";
+import {AdmParameter} from "../../../../../data/models/admin";
+import {ToasterEnum} from "../../../../../global/toaster-enum";
 
 @Component({
   selector: 'app-parameters-create',

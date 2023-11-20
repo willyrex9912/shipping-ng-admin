@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {AdmOrganizationService} from "../../../services/adm/AdmOrganization.service";
-import {AdmOrganization} from "../../../data/models/admin";
-import {ToasterService} from "../../../services/oth/toaster.service";
-import {ToasterEnum} from "../../../global/toaster-enum";
+import {AdmOrganizationService} from "../../../../services/adm/AdmOrganization.service";
+import {AdmOrganization} from "../../../../data/models/admin";
+import {ToasterService} from "../../../../services/oth/toaster.service";
+import {ToasterEnum} from "../../../../global/toaster-enum";
 
 @Component({
   selector: 'app-organization-list',
