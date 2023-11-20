@@ -13,10 +13,7 @@ const routes: Routes = [
   { path: 'userhome', component: UserHomepageComponent },
   { path: 'login', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
   {
-    path: 'administration',
-    canActivate: mapToCanActivate([AccessGuard]),
-    // canActivateChild: mapToCanActivateChild([AccessGuard]),
-    loadChildren: () => import('./features/admin/admin.module').then(m => m.AdminModule)
+    path: 'administration', loadChildren: () => import('./features/admin/admin.module').then(m => m.AdminModule)
   },
   { path: 'delivery', loadChildren: () => import('./features/delivery/delivery.module').then(m => m.DeliveryModule)},
   { path: '**', component: NotFoundComponent}

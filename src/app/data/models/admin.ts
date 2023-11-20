@@ -173,3 +173,12 @@ export class RolUserDto {
   public rolId!: number;
   public rolName!: string;
 }
+
+export class AdmRolePermissionDto {
+  public permissionId!:number;
+  public internalId!:number;
+  public createPermission!:boolean;
+  public deletePermission!:boolean;
+  public readPermission!:boolean;
+  public updatePermission!:boolean;
+}

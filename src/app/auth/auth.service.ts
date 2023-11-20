@@ -8,6 +8,8 @@ import {UserInfo} from "./models/user-info";
 import {AdmRoleService} from "../services/adm/adm-role.service";
 import {AdmRoleRouteDto, RequestRoleRoutesDto} from "../data/models/admin";
 import {catchError, map, Observable, of} from "rxjs";
+import {SessionService} from "../app-commons/services/session.service";
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +21,7 @@ export class AuthService {
   private http: HttpClient = inject(HttpClient);
   private jwtService: JwtService = inject(JwtService);
   private rolService: AdmRoleService = inject(AdmRoleService);
+  private router: Router = inject(Router);
 
   constructor() {
   }
@@ -59,4 +62,10 @@ export class AuthService {
     userInfo.rolesId = decodedToken['roles'];
     return userInfo;
   }
+
+  logout(){
+    localStorage.clear();
+    void this.router.navigate(['/']);
+  }
+
 }

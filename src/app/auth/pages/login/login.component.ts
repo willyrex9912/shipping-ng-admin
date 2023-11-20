@@ -4,6 +4,8 @@ import {Credentials} from "../../models/credentials";
 import {AuthService} from "../../auth.service";
 import {Router} from "@angular/router";
 import {SessionService} from "../../../app-commons/services/session.service";
+import {AdmPermissionService} from "../../../services/adm/adm-permission.service";
+import {ToasterService} from "../../../services/oth/toaster.service";
 
 @Component({
   selector: 'app-login',
@@ -18,7 +20,10 @@ export class LoginComponent {
 
   credentials: Credentials;
 
-  constructor() {
+  constructor(
+    private permissionService:AdmPermissionService,
+    private toasterService:ToasterService,
+  ) {
     this.credentials = new Credentials();
   }
 
@@ -30,7 +35,12 @@ export class LoginComponent {
         next: response => {
           localStorage.setItem('token', response.value);
           this.session.userInfoSignal.set(this.authService.getUserInfo());
-          console.log(this.session.userInfoSignal())
+          this.permissionService.findMyPermissions().subscribe({
+            next: permissions => {
+              localStorage.setItem('permix', JSON.stringify(permissions));
+            },
+            error: error => this.toasterService.showDefaultErrorMessage()
+          });
           void this.router.navigate(['/homepage']);
         },
         error: error => console.log("Error", error.error)

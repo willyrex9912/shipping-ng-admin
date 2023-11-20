@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import {mapToCanActivate, RouterModule, Routes} from '@angular/router';
 import { CreateRolesComponent } from 'src/app/features/admin/views/roles/create-roles/create-roles.component';
 import { RolesListComponent } from 'src/app/features/admin/views/roles/roles-list/roles-list.component';
 import { OrganizationListComponent } from './views/organization-list/organization-list.component';
@@ -12,56 +12,89 @@ import {CreateUserComponent} from "./views/users/create-user/create-user.compone
 import {UsersListComponent} from "./views/users/users-list/users-list.component";
 import {OperationCostListComponent} from "./views/operation-cost/operation-cost-list/operation-cost-list.component";
 import {OperationCostCrudComponent} from "./views/operation-cost/operation-cost-crud/operation-cost-crud.component";
+import {AllowNavigationGuard} from "../../auth/allow-navigation.guard";
+import {PermissionType} from "../../global/permission-type";
+import {Permission} from "../../global/permission";
 
 const routes: Routes = [
   {
     path: 'organizations',
     children: [
       {
-        path: '', component: OrganizationListComponent
+        path: '', component: OrganizationListComponent, canActivate: mapToCanActivate([AllowNavigationGuard]),
+        data: { permission : { type: PermissionType.READ, internalId: Permission.ORGANIZATIONS }}
       },
       {
-        path: 'create', component: CreateOrganizationComponent
+        path: 'create', component: CreateOrganizationComponent, canActivate: mapToCanActivate([AllowNavigationGuard]),
+        data: { permission : { type: PermissionType.CREATE, internalId: Permission.ORGANIZATIONS }}
       }
     ],
   },
   {
     path: 'roles',
     children: [
-      { path: '', component: RolesListComponent },
-      { path: 'create', component: CreateRolesComponent },
-      { path: 'edit/:roleId', component: CreateRolesComponent }
+      { path: '', component: RolesListComponent, canActivate: mapToCanActivate([AllowNavigationGuard]),
+        data: { permission : { type: PermissionType.READ, internalId: Permission.ROLES }}
+      },
+      { path: 'create', component: CreateRolesComponent, canActivate: mapToCanActivate([AllowNavigationGuard]),
+        data: { permission : { type: PermissionType.CREATE, internalId: Permission.ROLES }}
+      },
+      { path: 'edit/:roleId', component: CreateRolesComponent, canActivate: mapToCanActivate([AllowNavigationGuard]),
+        data: { permission : { type: PermissionType.UPDATE, internalId: Permission.ROLES }}
+      }
     ]
   },
   {
     path: 'vehicles',
     children: [
-      { path: '', component: VehiclesListComponent },
-      { path: 'create', component: VehiclesCreateComponent },
-      { path: 'edit/:vehicleId', component: VehiclesCreateComponent }
+      { path: '', component: VehiclesListComponent, canActivate: mapToCanActivate([AllowNavigationGuard]),
+        data: { permission : { type: PermissionType.READ, internalId: Permission.VEHICLES }}
+      },
+      { path: 'create', component: VehiclesCreateComponent, canActivate: mapToCanActivate([AllowNavigationGuard]),
+        data: { permission : { type: PermissionType.CREATE, internalId: Permission.VEHICLES }}
+      },
+      { path: 'edit/:vehicleId', component: VehiclesCreateComponent, canActivate: mapToCanActivate([AllowNavigationGuard]),
+        data: { permission : { type: PermissionType.UPDATE, internalId: Permission.VEHICLES }}
+      }
     ]
   },
   {
     path: 'parameters',
     children: [
-      { path: '', component: ParametersListComponent },
-      { path: 'create', component: ParametersCreateComponent },
-      { path: 'edit/:parameterId', component: ParametersCreateComponent }
+      { path: '', component: ParametersListComponent, canActivate: mapToCanActivate([AllowNavigationGuard]),
+        data: { permission : { type: PermissionType.READ, internalId: Permission.PARAMETERS }}
+      },
+      { path: 'create', component: ParametersCreateComponent, canActivate: mapToCanActivate([AllowNavigationGuard]),
+        data: { permission : { type: PermissionType.CREATE, internalId: Permission.PARAMETERS }}
+      },
+      { path: 'edit/:parameterId', component: ParametersCreateComponent, canActivate: mapToCanActivate([AllowNavigationGuard]),
+        data: { permission : { type: PermissionType.UPDATE, internalId: Permission.PARAMETERS }}
+      }
     ]
   },
   {
     path: 'users',
     children: [
-      { path: '', component: UsersListComponent },
-      { path: 'create', component: CreateUserComponent },
-      { path: 'edit/:userId', component: CreateUserComponent }
+      { path: '', component: UsersListComponent, canActivate: mapToCanActivate([AllowNavigationGuard]),
+        data: { permission : { type: PermissionType.READ, internalId: Permission.USERS }}
+      },
+      { path: 'create', component: CreateUserComponent, canActivate: mapToCanActivate([AllowNavigationGuard]),
+        data: { permission : { type: PermissionType.CREATE, internalId: Permission.USERS }}
+      },
+      { path: 'edit/:userId', component: CreateUserComponent, canActivate: mapToCanActivate([AllowNavigationGuard]),
+        data: { permission : { type: PermissionType.UPDATE, internalId: Permission.USERS }}
+      }
     ]
   },
   {
     path: 'operation-costs',
     children: [
-      { path: '', component: OperationCostListComponent },
-      { path: 'create', component: OperationCostCrudComponent }
+      { path: '', component: OperationCostListComponent, canActivate: mapToCanActivate([AllowNavigationGuard]),
+        data: { permission : { type: PermissionType.READ, internalId: Permission.OPERATION_COSTS }}
+      },
+      { path: 'create', component: OperationCostCrudComponent, canActivate: mapToCanActivate([AllowNavigationGuard]),
+        data: { permission : { type: PermissionType.CREATE, internalId: Permission.OPERATION_COSTS }}
+      }
     ]
   }
 ];

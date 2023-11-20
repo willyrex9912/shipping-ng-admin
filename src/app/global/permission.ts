@@ -1,0 +1,11 @@
+export enum Permission {
+  ADMINISTRATION = 101,
+    ROLES = 102,
+    USERS = 103,
+    VEHICLES = 104,
+    PARAMETERS = 105,
+    ORGANIZATIONS = 106,
+    OPERATION_COSTS = 107,
+  DELIVERY = 108,
+    PACKAGES = 109,
+}
