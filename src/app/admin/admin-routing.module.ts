@@ -8,6 +8,8 @@ import {VehiclesListComponent} from "./views/vehicles/vehicles-list/vehicles-lis
 import {VehiclesCreateComponent} from "./views/vehicles/vehicles-create/vehicles-create.component";
 import {ParametersListComponent} from "./views/parameter/parameters-list/parameters-list.component";
 import {ParametersCreateComponent} from "./views/parameter/parameters-create/parameters-create.component";
+import {CreateUserComponent} from "./views/users/create-user/create-user.component";
+import {UsersListComponent} from "./views/users/users-list/users-list.component";
 
 const routes: Routes = [
   {
@@ -43,6 +45,14 @@ const routes: Routes = [
       { path: '', component: ParametersListComponent },
       { path: 'create', component: ParametersCreateComponent },
       { path: 'edit/:parameterId', component: ParametersCreateComponent }
+    ]
+  },
+  {
+    path: 'users',
+    children: [
+      { path: '', component: UsersListComponent },
+      { path: 'create', component: CreateUserComponent },
+      { path: 'edit/:userId', component: CreateUserComponent }
     ]
   }
 ];

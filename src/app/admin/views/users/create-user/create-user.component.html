@@ -1,0 +1,73 @@
+<ng-container *transloco="let t">
+  <div class="row m-5">
+    <h1 class="h3 mb-5">{{ userId ? t('user.txt_edit') : t('user.txt_create') }}</h1>
+    <form>
+      <div class="row">
+        <div class="mb-3 col-lg-6 col-12">
+          <app-required-field/>
+          <label for="orgId" class="form-label">{{t('txt_organization')}}</label>
+          <select [(ngModel)]="user.organization.organizationId" class="form-select" aria-label="Default select example"
+                  name="orgId" id="orgId" (change)="getSubOrgs($event)">
+            <option *ngFor="let org of $organizations | async" value="{{org.organizationId}}"> {{org.orgName}}</option>
+          </select>
+        </div>
+        <div class="mb-3 col-lg-6 col-12">
+          <app-required-field/>
+          <label for="subOrgId" class="form-label">{{t('txt_sub_organization')}}</label>
+          <select [(ngModel)]="user.subOrganization!.organizationId" class="form-select"
+                  aria-label="Default select example" name="subOrgId" id="subOrgId">
+            <option *ngFor="let org of $subOrganizations | async"
+                    value="{{org.organizationId}}"> {{org.orgName}}</option>
+          </select>
+        </div>
+        <div class="mb-3 col-lg-6 col-12">
+          <app-required-field/>
+          <label for="fullName" class="form-label">{{t('user.txt_fullName')}}</label>
+          <input type="text" class="form-control" id="fullName" name="fullName"
+                 placeholder="{{t('user.txt_fullName_placeholder')}}" noWhitespace [(ngModel)]="user.fullName">
+        </div>
+        <div class="mb-3 col-lg-6 col-12">
+          <label for="address" class="form-label">{{t('user.txt_address')}}</label>
+          <input type="text" class="form-control" id="address" name="address"
+                 placeholder="{{t('user.txt_address_placeholder')}}" [(ngModel)]="user.address">
+        </div>
+        <div class="mb-3 col-lg-6 col-12">
+          <app-required-field/>
+          <label for="email" class="form-label">{{t('user.txt_email')}}</label>
+          <input type="email" class="form-control" id="email" name="email"
+                 placeholder="{{t('user.txt_email_placeholder')}}" noWhitespace [(ngModel)]="user.email">
+        </div>
+        <div class="mb-3 col-lg-6 col-12">
+          <app-required-field/>
+          <label for="password" class="form-label">{{t('user.txt_password')}}</label>
+          <input type="password" class="form-control" id="password" name="password"
+                 placeholder="{{t('user.txt_password_placeholder')}}" noWhitespace [(ngModel)]="user.password">
+        </div>
+        <div class="mb-3 col-lg-6 col-12">
+          <app-required-field/>
+          <label for="cui" class="form-label">{{t('user.txt_cui')}}</label>
+          <input type="number" class="form-control" id="cui" name="cui" placeholder="{{t('user.txt_cui_placeholder')}}" [(ngModel)]="user.cui">
+        </div>
+        <div class="mb-3 col-lg-6 col-12">
+          <app-required-field/>
+          <label for="orgId" class="form-label">{{t('txt_roles')}}</label>
+          <ng-multiselect-dropdown
+            [placeholder]="'Seleccione roles a asignar'"
+            [settings]="multiselect.settings"
+            [data]="roles"
+            [(ngModel)]="user.roles"
+            (onSelect)="onItemSelect($event)"
+            name="roles"
+          >
+          </ng-multiselect-dropdown>
+        </div>
+      </div>
+      <div class="row">
+      </div>
+      <div class="d-flex flex-column align-items-end my-4">
+        <button type="button" class="btn btn-warning btn-wide"
+                (click)="onSubmit()">{{ userId ? t('user.txt_edit') : t('user.txt_create') }}</button>
+      </div>
+    </form>
+  </div>
+</ng-container>

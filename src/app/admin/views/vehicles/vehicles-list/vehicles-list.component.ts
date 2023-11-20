@@ -24,7 +24,6 @@ export class VehiclesListComponent implements OnInit {
     this.vehicleService.findAll().subscribe({
       next: (response) => {
         this.vehicles = response.body ?? [];
-        const total = Number(response.headers.get('X-Total-Count'));
       },
       error: _ => this.toastService.show({ type: ToasterEnum.ERROR, message: 'txt_server_error' })
     });

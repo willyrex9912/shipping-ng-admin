@@ -84,3 +84,40 @@ export class AdmParameter {
   public description!: string;
   public categoryParameterId!: number;
 }
+
+export class AdmUser {
+  public userId!: number;
+  public organization: AdmOrganization;
+  public subOrganization?: AdmOrganization;
+  public fullName!: string;
+  public password!: string;
+  public email!: string;
+  public address?: string;
+  public cui!: string;
+  public userRoles?: AdmUserRol[];
+  public roles?: RolUserDto[];
+
+  constructor() {
+    this.organization = new AdmOrganization();
+    this.subOrganization = new AdmOrganization();
+    this.userRoles = [];
+    this.roles = [];
+  }
+}
+
+export class AdmUserRol {
+  public userRolId!: number;
+  public user?: AdmUser;
+  public rol?: AdmRole;
+  public entryDate!: string;
+
+  constructor() {
+    this.user = new AdmUser();
+    this.rol = new AdmRole();
+  }
+}
+
+export class RolUserDto {
+  public rolId!: number;
+  public rolName!: string;
+}

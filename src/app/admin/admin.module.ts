@@ -15,6 +15,8 @@ import { VehiclesListComponent } from './views/vehicles/vehicles-list/vehicles-l
 import { VehiclesCreateComponent } from './views/vehicles/vehicles-create/vehicles-create.component';
 import { ParametersListComponent } from './views/parameter/parameters-list/parameters-list.component';
 import { ParametersCreateComponent } from './views/parameter/parameters-create/parameters-create.component';
+import { UsersListComponent } from './views/users/users-list/users-list.component';
+import {NgMultiSelectDropDownModule} from "ng-multiselect-dropdown";
 
 
 @NgModule({
@@ -27,7 +29,8 @@ import { ParametersCreateComponent } from './views/parameter/parameters-create/p
     VehiclesListComponent,
     VehiclesCreateComponent,
     ParametersListComponent,
-    ParametersCreateComponent
+    ParametersCreateComponent,
+    UsersListComponent
   ],
   imports: [
     CommonModule,
@@ -38,7 +41,8 @@ import { ParametersCreateComponent } from './views/parameter/parameters-create/p
     NgbDropdown,
     NgbDropdownItem,
     NgbDropdownMenu,
-    NgbDropdownToggle
+    NgbDropdownToggle,
+    NgMultiSelectDropDownModule
   ]
 })
 export class AdminModule {
