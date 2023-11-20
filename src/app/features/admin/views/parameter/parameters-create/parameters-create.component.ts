@@ -42,7 +42,7 @@ export class ParametersCreateComponent implements OnInit{
   }
 
   onSubmit(){
-    if (!this.parameter.value || !this.parameter.description || !this.parameter.categoryParameterId)
+    if (!this.parameter.value || !this.parameter.description)
       return this.toasterService.show({type: ToasterEnum.ERROR, message: 'txt_complete_all_fields'});
 
     this.parameterService.save(this.parameter).subscribe({

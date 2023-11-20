@@ -122,8 +122,10 @@ export class AdmVehicle {
   public vehicleId!: number;
   public capacity!: number;
   public avgCostPerKm!: number;
-  public categoryStatusId!: number;
-  public organization: AdmOrganization;
+  public avgSpeed!: number;
+  public vehicleCategoryId!: number;
+  public statusCategoryId!: number;
+  public organization?: AdmOrganization;
 
   constructor() {
     this.organization = new AdmOrganization();
@@ -134,7 +136,12 @@ export class AdmParameter {
   public parameterId!: number;
   public value!: string;
   public description!: string;
-  public categoryParameterId!: number;
+  public parameterCategoryId!: number;
+  public AdmOrganization?: AdmOrganization;
+
+  constructor() {
+    this.AdmOrganization = new AdmOrganization();
+  }
 }
 
 export class AdmUser {
