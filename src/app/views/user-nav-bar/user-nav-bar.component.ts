@@ -26,7 +26,6 @@ export class UserNavBarComponent {
 
   constructor() {
     effect(() => {
-      console.log("Pass in effect user nav bar");
       this.userInfo = this.session.userInfoSignal();
     });
   }

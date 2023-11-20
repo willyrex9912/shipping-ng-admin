@@ -29,6 +29,14 @@ export class VehiclesListComponent implements OnInit {
     });
   }
 
+  getType(type: number): string {
+    switch (type) {
+      case 10571: return 'Vehiculo pequeño';
+      case 10572: return 'Vehiculo mediano';
+      case 10573: return 'Vehiculo grande';
+      default: return 'Tipo desconocido';
+    }
+  }
   getStatus(status: number): string {
     switch (status) {
       case 10518: return 'Activo';

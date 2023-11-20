@@ -1,11 +1,11 @@
 <ng-container *transloco="let t">
   <div class="row m-5" *transloco="let t">
     <div class="col-12">
-      <h1 class="h3">{{t('txt_vehicles')}}</h1>
+      <h1 class="h3">{{t('vehicle.txt_title')}}</h1>
     </div>
     <div class="d-flex flex-column align-items-end my-4">
       <button class="btn btn-warning btn-m-wide" routerLink="create"
-      >{{t('txt_create_vehicle')}}</button>
+      >{{t('vehicle.txt_create')}}</button>
     </div>
     <div class="">
       <table class="table">
@@ -13,10 +13,10 @@
         <tr>
           <th scope="col">#</th>
           <th scope="col">Id</th>
-          <th scope="col">{{t('txt_vehicle_capacity')}}</th>
-          <th scope="col">{{t('txt_vehicle_average_cost_per_km')}}</th>
-          <th scope="col">{{t('txt_vehicle_category')}}</th>
-          <th scope="col">{{t('txt_organization')}}</th>
+          <th scope="col">{{t('vehicle.txt_capacity')}}</th>
+          <th scope="col">{{t('vehicle.txt_avg_cost_per_km')}}</th>
+          <th scope="col">{{t('vehicle.txt_avg_speed')}}</th>
+          <th scope="col">{{t('vehicle.txt_category')}}</th>
           <th scope="col">{{t('txt_actions')}}</th>
         </tr>
         </thead>
@@ -25,10 +25,11 @@
           <tr>
             <th scope="row">{{ i + 1 }}</th>
             <td>{{ v.vehicleId }}</td>
-            <td>{{ v.capacity }}</td>
+            <td>{{ v.capacity }} lbs</td>
             <td>{{ v.avgCostPerKm }}</td>
-            <td>{{ getStatus(v.categoryStatusId) }}</td>
-            <td>{{ v.organization.orgName }}</td>
+            <td>{{ v.avgSpeed }}</td>
+            <td>{{ getType(v.vehicleCategoryId) }}</td>
+            <td>{{ getStatus(v.statusCategoryId) }}</td>
             <td>
               <button class="btn btn-sm text-primary" [routerLink]="['edit', v.vehicleId]">
                 <span class="material-symbols-rounded">edit_note</span>

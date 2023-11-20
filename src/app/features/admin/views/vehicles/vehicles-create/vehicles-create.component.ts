@@ -1,10 +1,12 @@
-import {Component, inject, OnInit} from '@angular/core';
+import {Component, effect, inject, OnInit} from '@angular/core';
 import {AdmOrganization, AdmVehicle} from "../../../../../data/models/admin";
 import {AdmVehicleService} from "../../../../../services/adm/adm-vehicle.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ToasterService} from "../../../../../services/oth/toaster.service";
 import {ToasterEnum} from "../../../../../global/toaster-enum";
 import {AdmOrganizationService} from "../../../../../services/adm/adm-organization.service";
+import {SessionService} from "../../../../../app-commons/services/session.service";
+import {UserInfo} from "../../../../../auth/models/user-info";
 
 enum VehicleStatus {
   ACTIVE = 10518,
@@ -20,23 +22,25 @@ enum VehicleStatus {
 })
 export class VehiclesCreateComponent implements OnInit {
 
-  private organizationService: AdmOrganizationService = inject(AdmOrganizationService);
   private vehicleService: AdmVehicleService = inject(AdmVehicleService);
   private toasterService: ToasterService = inject(ToasterService);
+  private session: SessionService = inject(SessionService);
   private route: ActivatedRoute = inject(ActivatedRoute);
   private router: Router = inject(Router);
 
-  organizations!: AdmOrganization[];
+  userInfo: UserInfo | undefined;
   vehicle: AdmVehicle;
   vehicleId!: number;
 
   constructor() {
     this.vehicle = new AdmVehicle();
+    effect(() => {
+      this.userInfo = this.session.userInfoSignal();
+    });
   }
 
   ngOnInit() {
     this.vehicleId = Number(this.route.snapshot.paramMap.get('vehicleId') ?? 0);
-    this.getOrganizations();
     if (this.vehicleId) this.findVehicleById(this.vehicleId);
   }
 
@@ -52,20 +56,14 @@ export class VehiclesCreateComponent implements OnInit {
     });
   }
 
-  getOrganizations() {
-    this.organizationService.findAll().subscribe({
-      next: (data) => this.organizations = data ?? [],
-      error: (error) => this.toasterService.show({type: ToasterEnum.ERROR, message: 'txt_server_error'})
-    });
-  }
-
   onSubmit() {
-    if (!this.vehicle.organization.organizationId || !this.vehicle.categoryStatusId || !this.vehicle.avgCostPerKm || !this.vehicle.capacity)
+    if (!this.vehicle.organization?.organizationId || !this.vehicle.statusCategoryId || !this.vehicle.vehicleCategoryId ||
+      !this.vehicle.avgCostPerKm || !this.vehicle.capacity || !this.vehicle.avgSpeed)
       return this.toasterService.show({type: ToasterEnum.ERROR, message: 'txt_complete_all_fields'});
 
     this.vehicleService.save(this.vehicle).subscribe({
       next: _ => {
-        this.toasterService.show({type: ToasterEnum.SUCCESS, message: 'txt_vehicle_saved'});
+        this.toasterService.show({type: ToasterEnum.SUCCESS, message: 'vehicle.txt_saved'});
         void this.router.navigate(['/administration/vehicles']);
       },
       error: _ => this.toasterService.show({type: ToasterEnum.ERROR, message: 'txt_server_error'})

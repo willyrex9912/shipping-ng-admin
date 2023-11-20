@@ -67,6 +67,17 @@
   "OCC_Variable_Costs": "Costos variables",
   "txt_operation_costs": "Costos de operación",
   "txt_entry_date": "Fecha de creación",
+  "vehicle": {
+    "txt_title": "Vehículos",
+    "txt_create": "Crear vehículo",
+    "txt_capacity": "Capacidad (kg)",
+    "txt_avg_cost_per_km": "Costo por Km promedio",
+    "txt_avg_speed": "Velocidad promedio (Km/h)",
+    "txt_category": "Estado del vehiculo",
+    "txt_type": "Tipo de vehiculo",
+    "txt_edit": "Editar vehículo",
+    "txt_saved": "Vehículo guardado"
+  },
   "txt_vehicles": "Vehículos",
   "txt_create_vehicle": "Crear vehículo",
   "txt_vehicle_capacity": "Capacidad",
