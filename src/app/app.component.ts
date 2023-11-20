@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import {Router} from "@angular/router";
+import {Component, effect, inject} from '@angular/core';
+import {AuthService} from "./auth/auth.service";
 
 @Component({
   selector: 'app-root',
@@ -8,15 +8,7 @@ import {Router} from "@angular/router";
 })
 export class AppComponent {
 
-  localStorage = localStorage;
+  authService: AuthService = inject(AuthService);
 
-  constructor(private router: Router) {
-  }
-  showLogin() {
-    this.router.navigate(['/login']);
-  }
-
-  logout(){
-    localStorage.removeItem('token');
-  }
+  constructor() {}
 }

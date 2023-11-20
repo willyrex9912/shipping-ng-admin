@@ -1,0 +1,41 @@
+<ng-container *transloco="let t">
+  <div class="row m-5">
+    <h1 class="h3 mb-5">{{ vehicleId ? t('txt_edit_vehicle') : t('txt_create_vehicle') }}</h1>
+    <form>
+      <div class="row">
+        <div class="mb-3 col-lg-6 col-12">
+          <app-required-field />
+          <label for="capacity" class="form-label">{{t('txt_vehicle_capacity')}}</label>
+          <input type="number" class="form-control" id="capacity" name="capacity" [(ngModel)]="vehicle.capacity">
+        </div>
+        <div class="mb-3 col-lg-6 col-12">
+          <app-required-field />
+          <label for="costPerKm" class="form-label">{{t('txt_vehicle_average_cost_per_km')}}</label>
+          <input type="number" class="form-control" id="costPerKm" name="costPerKm" [(ngModel)]="vehicle.avgCostPerKm">
+        </div>
+        <div class="mb-3 col-lg-6 col-12">
+          <app-required-field />
+          <label for="orgId" class="form-label">{{t('txt_vehicle_organization')}}</label>
+          <select [(ngModel)]="vehicle.organization.organizationId" class="form-select" aria-label="Default select example" name="orgId" id="orgId">
+            <option *ngFor="let org of organizations" value="{{org.organizationId}}"> {{org.orgName}}</option>
+          </select>
+        </div>
+        <div class="mb-3 col-lg-6 col-12">
+          <app-required-field />
+          <label for="status" class="form-label">{{t('txt_vehicle_category')}}</label>
+          <select [(ngModel)]="vehicle.categoryStatusId" class="form-select" aria-label="Default select example" name="status" id="status">
+            <option value="10518">Activo</option>
+            <option value="10519">Fuera de servicio</option>
+            <option value="10520">Mantenimiento</option>
+            <option value="10521">En ruta</option>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+      </div>
+      <div class="d-flex flex-column align-items-end my-4">
+        <button type="button" class="btn btn-warning btn-wide" (click)="onSubmit()">{{ vehicleId ? t('txt_save') : t('txt_create') }}</button>
+      </div>
+    </form>
+  </div>
+</ng-container>

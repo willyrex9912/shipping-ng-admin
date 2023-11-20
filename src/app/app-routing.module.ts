@@ -1,12 +1,23 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import {mapToCanActivate, mapToCanActivateChild, RouterModule, Routes} from '@angular/router';
 import {HomeComponent} from "./views/home/home.component";
 import {NotFoundComponent} from "./app-commons/components/not-found/not-found.component";
+import {ManagerHomepageComponent} from "./app-commons/components/manager-homepage.component";
+import {UserHomepageComponent} from "./views/user-homepage/user-homepage.component";
+import {AccessGuard} from "./auth/access-guard";
 
 const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '', redirectTo: '/homepage', pathMatch: 'full' },
+  { path: 'homepage', component: ManagerHomepageComponent},
   { path: 'home', component: HomeComponent },
-  { path: 'administration', loadChildren: () => import('./features/admin/admin.module').then(m => m.AdminModule)},
+  { path: 'userhome', component: UserHomepageComponent },
+  { path: 'login', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
+  {
+    path: 'administration',
+    canActivate: mapToCanActivate([AccessGuard]),
+    // canActivateChild: mapToCanActivateChild([AccessGuard]),
+    loadChildren: () => import('./features/admin/admin.module').then(m => m.AdminModule)
+  },
   { path: 'delivery', loadChildren: () => import('./features/delivery/delivery.module').then(m => m.DeliveryModule)},
   { path: '**', component: NotFoundComponent}
 ];

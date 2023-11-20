@@ -8,14 +8,19 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { TranslocoRootModule } from './transloco-root.module';
 import {AppCommonsModule} from "./app-commons/app-commons.module";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import {FormsModule} from "@angular/forms";
 import {AuthInterceptor} from "./auth/auth.interceptor";
 import {AuthModule} from "./auth/auth.module";
+import {NavBarComponent} from "./views/nav-bar/nav-bar.component";
+import {UserNavBarComponent} from "./views/user-nav-bar/user-nav-bar.component";
+import {UserHomepageComponent} from "./views/user-homepage/user-homepage.component";
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    NavBarComponent,
+    UserNavBarComponent,
+    UserHomepageComponent
   ],
   imports: [
     AppCommonsModule,

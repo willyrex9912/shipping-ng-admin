@@ -3,6 +3,7 @@ import {NgForm} from "@angular/forms";
 import {Credentials} from "../../models/credentials";
 import {AuthService} from "../../auth.service";
 import {Router} from "@angular/router";
+import {SessionService} from "../../../app-commons/services/session.service";
 
 @Component({
   selector: 'app-login',
@@ -13,6 +14,7 @@ export class LoginComponent {
 
   private authService: AuthService = inject(AuthService);
   private router: Router = inject(Router);
+  private session: SessionService = inject(SessionService);
 
   credentials: Credentials;
 
@@ -21,15 +23,15 @@ export class LoginComponent {
   }
 
   onSummit(form: NgForm) {
-    console.log(form.value);
     this.credentials = form.value;
 
     this.authService.login(this.credentials)
       .subscribe({
         next: response => {
-          console.log("Response", response);
           localStorage.setItem('token', response.value);
-          this.router.navigate(['/']);
+          this.session.userInfoSignal.set(this.authService.getUserInfo());
+          console.log(this.session.userInfoSignal())
+          void this.router.navigate(['/homepage']);
         },
         error: error => console.log("Error", error.error)
       });

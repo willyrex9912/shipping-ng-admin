@@ -1,0 +1,48 @@
+<ng-container *transloco="let t">
+  <div class="row m-5" *transloco="let t">
+    <div class="col-12">
+      <h1 class="h3">{{t('user.txt_title')}}</h1>
+    </div>
+    <div class="d-flex flex-column align-items-end my-4">
+      <button class="btn btn-warning btn-m-wide" routerLink="create"
+      >{{t('user.txt_create')}}</button>
+    </div>
+    <div class="">
+      <table class="table">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Id</th>
+          <th scope="col">{{t('txt_organization')}}</th>
+          <th scope="col">{{t('txt_sub_organization')}}</th>
+          <th scope="col">{{t('user.txt_fullName')}}</th>
+          <th scope="col">{{t('user.txt_email')}}</th>
+          <th scope="col">{{t('user.txt_address')}}</th>
+          <th scope="col">{{t('user.txt_cui')}}</th>
+          <th scope="col">{{t('txt_actions')}}</th>
+        </tr>
+        </thead>
+        <tbody>
+        <ng-container *ngFor="let u of user; let i = index">
+          <tr>
+            <th scope="row">{{ i + 1 }}</th>
+            <td>{{ u.userId }}</td>
+            <td>{{ u.organization.orgName }}</td>
+            <td>{{ u.subOrganization?.orgName ?? t('txt_empty_organization') }}</td>
+            <td>{{ u.fullName }}</td>
+            <td>{{ u.email }}</td>
+            <td>{{ u.address ?? t('user.txt_empty_address') }}</td>
+            <td>{{ u.cui }}</td>
+            <td>
+              <button class="btn btn-sm text-primary" [routerLink]="['edit', u.userId]">
+                <span class="material-symbols-rounded">edit_note</span>
+              </button>
+            </td>
+          </tr>
+        </ng-container>
+        </tbody>
+      </table>
+    </div>
+    <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
+  </div>
+</ng-container>
