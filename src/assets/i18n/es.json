@@ -119,5 +119,6 @@
   "multiselect": {
     "txt_select_all": "Seleccionar todos",
     "txt_unselect_all": "Deseleccionar todos"
-  }
+  },
+  "txt_packages": "Paquetes"
 }

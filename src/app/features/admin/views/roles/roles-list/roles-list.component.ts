@@ -3,6 +3,7 @@ import { AdmRoleDto } from 'src/app/data/models/admin';
 import { ToasterEnum } from 'src/app/global/toaster-enum';
 import { AdmRoleService } from 'src/app/services/adm/adm-role.service';
 import { ToasterService } from 'src/app/services/oth/toaster.service';
+import {Permission} from "../../../../../global/permission";
 
 @Component({
   selector: 'app-roles-list',
@@ -12,6 +13,7 @@ import { ToasterService } from 'src/app/services/oth/toaster.service';
 export class RolesListComponent implements OnInit {
 
   roles: AdmRoleDto[] = [];
+  permission = Permission;
 
   constructor(
     private roleService: AdmRoleService,
@@ -32,4 +34,6 @@ export class RolesListComponent implements OnInit {
       error: _ => this.toastService.show({ type: ToasterEnum.ERROR, message: 'txt_server_error' })
     });
   }
+
+    protected readonly Permission = Permission;
 }

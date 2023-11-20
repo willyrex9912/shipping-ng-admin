@@ -3,6 +3,7 @@ import {AdmOrganization} from "../../../../data/models/admin";
 import {AdmOrganizationService} from "../../../../services/adm/adm-organization.service";
 import {ToasterService} from "../../../../services/oth/toaster.service";
 import {ToasterEnum} from "../../../../global/toaster-enum";
+import {Permission} from "../../../../global/permission";
 
 @Component({
   selector: 'app-organization-list',
@@ -12,6 +13,7 @@ import {ToasterEnum} from "../../../../global/toaster-enum";
 export class OrganizationListComponent implements OnInit {
 
   organizations:AdmOrganization[] = [];
+  permission = Permission;
 
   constructor(
     private organizationService:AdmOrganizationService,

@@ -8,6 +8,8 @@ import {FormsModule} from "@angular/forms";
 import {CommonModule} from "@angular/common";
 import { RequiredFieldComponent } from './components/required-field/required-field.component';
 import {ManagerHomepageComponent} from "./components/manager-homepage.component";
+import { HeaderComponent } from './components/header/header.component';
+import {RouterLink} from "@angular/router";
 
 @NgModule({
   declarations: [
@@ -15,19 +17,22 @@ import {ManagerHomepageComponent} from "./components/manager-homepage.component"
     NoWitheSpaceDirective,
     ToasterComponent,
     RequiredFieldComponent,
-    ManagerHomepageComponent
+    ManagerHomepageComponent,
+    HeaderComponent
   ],
   imports: [
     TranslocoModule,
     NgbModule,
     FormsModule,
-    CommonModule
+    CommonModule,
+    RouterLink
   ],
   exports: [
     NotFoundComponent,
     NoWitheSpaceDirective,
     ToasterComponent,
-    RequiredFieldComponent
+    RequiredFieldComponent,
+    HeaderComponent,
   ]
 })
 export class AppCommonsModule {

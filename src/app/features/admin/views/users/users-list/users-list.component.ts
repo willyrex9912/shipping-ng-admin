@@ -3,6 +3,7 @@ import {AdmUserService} from "../../../../../services/adm/adm-user.service";
 import {ToasterService} from "../../../../../services/oth/toaster.service";
 import {AdmUser} from "../../../../../data/models/admin";
 import {ToasterEnum} from "../../../../../global/toaster-enum";
+import {Permission} from "../../../../../global/permission";
 
 @Component({
   selector: 'app-users-list',
@@ -15,6 +16,7 @@ export class UsersListComponent implements OnInit {
   private toastService: ToasterService = inject(ToasterService);
 
   user: AdmUser[] = [];
+  permission = Permission;
 
   ngOnInit(): void {
     this.findAll();
@@ -27,4 +29,5 @@ export class UsersListComponent implements OnInit {
     });
   }
 
+    protected readonly Permission = Permission;
 }

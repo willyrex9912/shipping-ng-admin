@@ -1,0 +1,11 @@
+<div *transloco="let t">
+  <div class="col-12">
+    <h1 class="h3">{{title}}</h1>
+  </div>
+  <ng-container *ngIf="showCreateButton">
+    <div class="d-flex flex-column align-items-end my-4">
+      <button class="btn btn-warning btn-m-wide" [routerLink]="createRoute"
+      >{{t('txt_create')}}</button>
+    </div>
+  </ng-container>
+</div>

@@ -8,11 +8,13 @@
       </div>
 
       <ul class="nav col- 12 col-md-auto mb-2 justify-content-center mb-md-0">
-        <a *ngIf="authService.hasPermission(paths.users.name)" routerLink="{{paths.users.name}}" class="nav-link px-2 text-white">Usuarios</a>
-        <a *ngIf="authService.hasPermission(paths.roles.name)" routerLink="{{paths.roles.name}}" class="nav-link px-2 text-white">Roles</a>
-        <a *ngIf="authService.hasPermission(paths.organizations.name)" routerLink="{{paths.organizations.name}}" class="nav-link px-2 text-white">Organizaciones</a>
-        <a *ngIf="authService.hasPermission(paths.vehicles.name)" routerLink="{{paths.vehicles.name}}" class="nav-link px-2 text-white">Vehiculos</a>
-        <a *ngIf="authService.hasPermission(paths.parameters.name)" routerLink="{{paths.parameters.name}}" class="nav-link px-2 text-white">Parametros</a>
+        <a *ngIf="allowModule(permission.USERS)" routerLink="{{paths.users.name}}" class="nav-link px-2 text-white">Usuarios</a>
+        <a *ngIf="allowModule(permission.ROLES)" routerLink="{{paths.roles.name}}" class="nav-link px-2 text-white">Roles</a>
+        <a *ngIf="allowModule(permission.ORGANIZATIONS)" routerLink="{{paths.organizations.name}}" class="nav-link px-2 text-white">Organizaciones</a>
+        <a *ngIf="allowModule(permission.VEHICLES)" routerLink="{{paths.vehicles.name}}" class="nav-link px-2 text-white">Vehiculos</a>
+        <a *ngIf="allowModule(permission.PARAMETERS)" routerLink="{{paths.parameters.name}}" class="nav-link px-2 text-white">Parametros</a>
+        <a *ngIf="allowModule(permission.OPERATION_COSTS)" routerLink="{{paths.operationCosts.name}}" class="nav-link px-2 text-white">Costos de operacion</a>
+        <a *ngIf="allowModule(permission.PACKAGES)" routerLink="{{paths.packages.name}}" class="nav-link px-2 text-white">Paquetes</a>
       </ul>
 
       <div class="col-md-3 text-end">

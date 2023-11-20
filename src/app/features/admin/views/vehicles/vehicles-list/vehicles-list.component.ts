@@ -3,6 +3,7 @@ import {AdmVehicle} from "../../../../../data/models/admin";
 import {ToasterService} from "../../../../../services/oth/toaster.service";
 import {AdmVehicleService} from "../../../../../services/adm/adm-vehicle.service";
 import {ToasterEnum} from "../../../../../global/toaster-enum";
+import {Permission} from "../../../../../global/permission";
 
 @Component({
   selector: 'app-vehicles-list',
@@ -15,6 +16,7 @@ export class VehiclesListComponent implements OnInit {
   private toastService: ToasterService = inject(ToasterService);
 
   vehicles: AdmVehicle[] = [];
+  permission = Permission;
 
   ngOnInit(): void {
     this.findAll();
@@ -47,4 +49,5 @@ export class VehiclesListComponent implements OnInit {
     }
   }
 
+    protected readonly Permission = Permission;
 }

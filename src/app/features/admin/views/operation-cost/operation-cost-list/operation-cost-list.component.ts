@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AdmOperationCostService} from "../../../../../services/adm/adm-operation-cost.service";
 import {ToasterService} from "../../../../../services/oth/toaster.service";
 import {AdmOperationCostDto} from "../../../../../data/models/admin";
+import {Permission} from "../../../../../global/permission";
 
 @Component({
   selector: 'app-operation-cost-list',
@@ -11,6 +12,7 @@ import {AdmOperationCostDto} from "../../../../../data/models/admin";
 export class OperationCostListComponent implements OnInit {
 
   costs:AdmOperationCostDto[] = [];
+  permission = Permission;
 
   constructor(
     private operationCostService:AdmOperationCostService,
@@ -28,4 +30,5 @@ export class OperationCostListComponent implements OnInit {
     });
   }
 
+    protected readonly Permission = Permission;
 }

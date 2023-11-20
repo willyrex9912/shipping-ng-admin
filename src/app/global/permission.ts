@@ -1,4 +1,5 @@
 export enum Permission {
+  NONE = 0,
   ADMINISTRATION = 101,
     ROLES = 102,
     USERS = 103,

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AdmPackageDto} from "../../../../../data/models/admin";
 import {AdmPackageService} from "../../../../../services/adm/adm-package.service";
 import {ToasterService} from "../../../../../services/oth/toaster.service";
+import {Permission} from "../../../../../global/permission";
 
 @Component({
   selector: 'app-package-list',
@@ -11,6 +12,7 @@ import {ToasterService} from "../../../../../services/oth/toaster.service";
 export class PackageListComponent implements OnInit{
 
   packages:AdmPackageDto[] = [];
+  permission = Permission;
 
   constructor(
     private packageService:AdmPackageService,
@@ -28,4 +30,5 @@ export class PackageListComponent implements OnInit{
     });
   }
 
+    protected readonly Permission = Permission;
 }
